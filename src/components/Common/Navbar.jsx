@@ -163,53 +163,51 @@ function Navbar() {
             </Link>
           ))}
 
-          {/* Mobile Catalog Sublinks */}
-          {subLinks.length > 0 && (
-            <div className="flex flex-col gap-2 pl-4 border-l border-[rgba(6,182,212,0.15)]">
-              {subLinks
-                ?.filter((subLink) => subLink?.courses?.length >= 0)
-                ?.map((subLink, i) => (
-                  <Link
-                    key={i}
-                    to={`/catalog/${subLink.name.split(" ").join("-").toLowerCase()}`}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-sm text-[#94a3b8] hover:text-[#06b6d4] transition-colors duration-150"
-                  >
-                    {subLink.name}
-                  </Link>
-                ))}
-            </div>
-          )}
+{/* Mobile Menu - Overlay Style */}
+{mobileMenuOpen && (
+  <div 
+    className="fixed inset-0 top-14 z-50 md:hidden"
+    onClick={() => setMobileMenuOpen(false)}
+  >
+    <div 
+      className="absolute right-0 top-0 w-64 h-auto bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] rounded-bl-lg px-6 py-4 flex flex-col gap-4"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {NavbarLinks.map((link, index) => (
+        <Link
+          key={index}
+          to={link?.path || "#"}
+          onClick={() => setMobileMenuOpen(false)}
+          className={`text-sm transition-colors duration-150 ${
+            matchRoute(link?.path)
+              ? "text-[#06b6d4]"
+              : "text-[#94a3b8] hover:text-[#06b6d4]"
+          }`}
+        >
+          {link.title}
+        </Link>
+      ))}
 
-          <div className="flex flex-col gap-3 mt-2">
-            {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
-              <Link to="/dashboard/cart" onClick={() => setMobileMenuOpen(false)} className="relative w-fit">
-                <AiOutlineShoppingCart className="text-2xl text-[#94a3b8] hover:text-[#06b6d4]" />
-                {totalItems > 0 && (
-                  <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center rounded-[4px] bg-[#06b6d4] text-xs font-bold text-[#060d1a]">
-                    {totalItems}
-                  </span>
-                )}
-              </Link>
-            )}
-            {token === null && (
-              <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
-                <button className="w-full rounded-[4px] border border-[rgba(6,182,212,0.15)] bg-transparent px-4 py-2 text-sm text-[#94a3b8] hover:border-[#06b6d4] hover:text-[#06b6d4]">
-                  Log in
-                </button>
-              </Link>
-            )}
-            {token === null && (
-              <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
-                <button className="w-full rounded-[4px] border border-[#06b6d4] bg-transparent px-4 py-2 text-sm font-semibold text-[#06b6d4] hover:bg-[#06b6d4] hover:text-[#060d1a]">
-                  Sign up
-                </button>
-              </Link>
-            )}
-            {token !== null && <ProfileDropdown />}
-          </div>
-        </div>
-      )}
+      <div className="flex flex-col gap-3 mt-2 border-t border-[rgba(6,182,212,0.15)] pt-3">
+        {token === null && (
+          <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+            <button className="w-full rounded-[4px] border border-[rgba(6,182,212,0.15)] bg-transparent px-4 py-2 text-sm text-[#94a3b8]">
+              Log in
+            </button>
+          </Link>
+        )}
+        {token === null && (
+          <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
+            <button className="w-full rounded-[4px] border border-[#06b6d4] bg-transparent px-4 py-2 text-sm font-semibold text-[#06b6d4]">
+              Sign up
+            </button>
+          </Link>
+        )}
+        {token !== null && <ProfileDropdown />}
+      </div>
+    </div>
+  </div>
+)}
     </div>
   )
 }
