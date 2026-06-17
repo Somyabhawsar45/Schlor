@@ -29,30 +29,29 @@ export default function RenderSteps() {
         {steps.map((item) => (
           <>
             <div
-              className="flex flex-col items-center "
+              className="flex flex-col items-center"
               key={item.id}
             >
               <button
-                className={`grid cursor-default aspect-square w-[34px] place-items-center rounded-full border-[1px] ${
+                className={`grid cursor-default aspect-square w-[34px] place-items-center rounded-[4px] border ${
                   step === item.id
-                    ? "border-yellow-50 bg-yellow-900 text-yellow-50"
-                    : "border-richblack-700 bg-richblack-800 text-richblack-300"
-                } ${step > item.id && "bg-yellow-50 text-yellow-50"}} `}
+                    ? "border-[#06b6d4] bg-[#06b6d4] text-[#060d1a] font-bold"
+                    : "border-[rgba(6,182,212,0.15)] bg-[#0c1a2e] text-[#94a3b8]"
+                } ${step > item.id && "border-[#06b6d4] bg-transparent text-[#06b6d4]"} `}
               >
                 {step > item.id ? (
-                  <FaCheck className="font-bold text-richblack-900" />
+                  <FaCheck className="font-bold text-[#06b6d4]" />
                 ) : (
                   item.id
                 )}
               </button>
-              
             </div>
             {item.id !== steps.length && (
               <>
                 <div
-                  className={`h-[calc(34px/2)] w-[33%]  border-dashed border-b-2 ${
-                  step > item.id  ? "border-yellow-50" : "border-richblack-500"
-                } `}
+                  className={`h-[calc(34px/2)] w-[33%] border-dashed border-b-2 ${
+                    step > item.id ? "border-[#06b6d4]" : "border-[rgba(6,182,212,0.15)]"
+                  } `}
                 ></div>
               </>
             )}
@@ -67,16 +66,14 @@ export default function RenderSteps() {
               className="flex min-w-[130px] flex-col items-center gap-y-2"
               key={item.id}
             >
-              
               <p
                 className={`text-sm ${
-                  step >= item.id ? "text-richblack-5" : "text-richblack-500"
+                  step >= item.id ? "text-[#06b6d4]" : "text-[#94a3b8]"
                 }`}
               >
                 {item.title}
               </p>
             </div>
-            
           </>
         ))}
       </div>

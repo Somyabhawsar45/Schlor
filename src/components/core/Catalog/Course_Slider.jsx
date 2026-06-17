@@ -27,7 +27,7 @@ function Course_Slider({ Courses }) {
               slidesPerView: 3,
             },
           }}
-          className="max-h-[30rem]"
+          className="max-h-[30rem] bg-[#060d1a]"
         >
           {Courses?.map((course, i) => (
             <SwiperSlide key={i}>
@@ -36,7 +36,7 @@ function Course_Slider({ Courses }) {
           ))}
         </Swiper>
       ) : (
-        <p className="text-xl text-richblack-5">No Course Found</p>
+        <p className="text-xl text-[#f0f9ff]">No Course Found</p>
       )}
     </>
   )

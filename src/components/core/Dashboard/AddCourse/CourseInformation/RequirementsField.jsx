@@ -41,8 +41,8 @@ export default function RequirementsField({
 
   return (
     <div className="flex flex-col space-y-2">
-      <label className="text-sm text-richblack-5" htmlFor={name}>
-        {label} <sup className="text-pink-200">*</sup>
+      <label className="text-xs font-medium text-[#94a3b8]" htmlFor={name}>
+        {label} <sup className="text-[#06b6d4]">*</sup>
       </label>
       <div className="flex flex-col items-start space-y-2">
         <input
@@ -55,7 +55,7 @@ export default function RequirementsField({
         <button
           type="button"
           onClick={handleAddRequirement}
-          className="font-semibold text-yellow-50"
+          className="font-semibold text-[#06b6d4] hover:text-[#0891b2] transition-colors duration-150"
         >
           Add
         </button>
@@ -63,11 +63,11 @@ export default function RequirementsField({
       {requirementsList.length > 0 && (
         <ul className="mt-2 list-inside list-disc">
           {requirementsList.map((requirement, index) => (
-            <li key={index} className="flex items-center text-richblack-5">
+            <li key={index} className="flex items-center text-[#94a3b8]">
               <span>{requirement}</span>
               <button
                 type="button"
-                className="ml-2 text-xs text-pure-greys-300 "
+                className="ml-2 text-xs text-[#94a3b8] hover:text-[#ef4444] transition-colors duration-150"
                 onClick={() => handleRemoveRequirement(index)}
               >
                 clear
@@ -77,7 +77,7 @@ export default function RequirementsField({
         </ul>
       )}
       {errors[name] && (
-        <span className="ml-2 text-xs tracking-wide text-pink-200">
+        <span className="ml-2 text-xs tracking-wide text-[#06b6d4]">
           {label} is required
         </span>
       )}

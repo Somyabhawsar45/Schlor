@@ -2,37 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-base: #060d1a;
+  --bg-surface: #0c1a2e;
+  --accent: #06b6d4;
+  --accent-hover: #0891b2;
+  --text-primary: #f0f9ff;
+  --text-secondary: #94a3b8;
+}
+body {
+  background-color: #060d1a;
+  color: #f0f9ff;
+}
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #060d1a; }
+::-webkit-scrollbar-thumb { background: rgba(6,182,212,0.25); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeUp { animation: fadeUp 0.3s ease forwards; }
+
+@keyframes glowPulse {
+  0%,100% { box-shadow: 0 0 8px rgba(6,182,212,0.15); }
+  50%      { box-shadow: 0 0 20px rgba(6,182,212,0.35); }
+}
+.glow-active { animation: glowPulse 2.5s ease infinite; }
+
+input, textarea, select {
+  background: transparent !important;
+  border: 1px solid rgba(6,182,212,0.15) !important;
+  border-radius: 4px !important;
+  color: #f0f9ff !important;
+  caret-color: #06b6d4 !important;
+  outline: none !important;
+  transition: border-color 0.15s ease;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #06b6d4 !important;
+  box-shadow: 0 0 0 1px rgba(6,182,212,0.15) !important;
+}
+input::placeholder, textarea::placeholder {
+  color: rgba(6,182,212,0.35) !important;
+}
+input[maxlength="1"] {
+  border: 1px solid rgba(6,182,212,0.15) !important;
+  background: #0c1a2e !important;
+  color: #06b6d4 !important;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 4px !important;
+}
+input[maxlength="1"]:focus {
+  border-color: #06b6d4 !important;
+  box-shadow: 0 0 12px rgba(6,182,212,0.25) !important;
+}
+.swiper-pagination-bullet { background: rgba(6,182,212,0.3) !important; }
+.swiper-pagination-bullet-active { background: #06b6d4 !important; }
+
 html,
 body {
   overflow-x: hidden;
-}
-
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
-* {
-  scrollbar-width: auto;
-  scrollbar-color: #afb2bf;
-}
-
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 3px;
-}
-
-*::-webkit-scrollbar-track {
-  background: #000814;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #afb2bf;
-  border-radius: 10px;
-  visibility: hidden;
-}
-
-*:active::-webkit-scrollbar-thumb,
-*:focus::-webkit-scrollbar-thumb,
-*:hover::-webkit-scrollbar-thumb {
-  visibility: visible;
 }
 
 /* Hide default styling of details/summary */
@@ -48,7 +81,7 @@ details > summary::-webkit-details-marker {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 9px solid #f1f2ff;
+  border: 9px solid rgba(6,182,212,0.15);
   animation: spinner-bulqg1 0.8s infinite linear alternate,
     spinner-oaa3wk 1.6s infinite linear;
 }
@@ -99,7 +132,9 @@ details > summary::-webkit-details-marker {
   /* backdrop-filter: blur(26px); */
 }
 .homepage_bg {
-  background: url("../src/assets/Images/bghome.svg");
+    background-color: #060d1a !important;
+  background-image: none !important;
+
   /* background-size: contain; */
 }
 
@@ -201,18 +236,18 @@ details > summary::-webkit-details-marker {
 
 /* For conditional coloring of icons in dashboard sidebar */
 .active-icon {
-  fill: #ffd60a !important;
-  color: #ffd60a !important;
+  fill: #06b6d4 !important;
+  color: #06b6d4 !important;
 }
 
 .inactive-icon {
-  fill: #838894;
-  color: #838894;
+  fill: #94a3b8;
+  color: #94a3b8;
 }
 
 /* Buttons */
 .yellowButton {
-  @apply cursor-pointer rounded-md bg-yellow-50 px-[20px] py-[8px] font-semibold text-richblack-900;
+  @apply cursor-pointer rounded-[4px] border border-[#06b6d4] bg-transparent px-[20px] py-[8px] text-sm font-semibold text-[#06b6d4] transition-all duration-150 hover:bg-[#06b6d4] hover:text-[#060d1a];
 }
 
 /* Swiper CSS Starts */
@@ -233,14 +268,14 @@ details > summary::-webkit-details-marker {
 /* Swiper CSS Ends */
 
 .blackButton {
-  @apply cursor-pointer rounded-md bg-richblack-800 px-[20px] py-[8px] font-semibold text-richblack-5;
+  @apply cursor-pointer rounded-[4px] border border-[rgba(6,182,212,0.15)] bg-transparent px-[20px] py-[8px] text-sm font-semibold text-[#94a3b8] transition-all duration-150 hover:border-[#06b6d4] hover:text-[#06b6d4];
 }
 .lable-style {
-  @apply text-[14px] text-richblack-5;
+  @apply text-xs font-medium text-[#94a3b8];
 }
 .form-style {
-  @apply rounded-lg bg-richblack-700 p-3 text-[16px] leading-[24px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 focus:outline-none;
+  @apply rounded-[4px] border border-[rgba(6,182,212,0.15)] bg-transparent p-3 text-[16px] leading-[24px] text-[#f0f9ff] placeholder:text-[rgba(6,182,212,0.35)] focus:border-[#06b6d4] focus:outline-none;
 }
 .section_heading {
-  @apply text-2xl font-bold text-richblack-5 lg:text-4xl;
+  @apply text-2xl font-bold text-[#f0f9ff] lg:text-4xl;
 }

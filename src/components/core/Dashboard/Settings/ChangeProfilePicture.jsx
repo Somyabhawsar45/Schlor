@@ -59,15 +59,15 @@ export default function ChangeProfilePicture() {
   }, [imageFile])
   return (
     <>
-      <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 text-richblack-5">
+      <div className="flex items-center justify-between bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] rounded-[4px] p-6 text-[#f0f9ff]">
         <div className="flex items-center gap-x-4">
           <img
             src={previewSource || user?.image}
             alt={`profile-${user?.firstName}`}
-            className="aspect-square w-[78px] rounded-full object-cover"
+            className="aspect-square w-[78px] rounded-[4px] object-cover border-2 border-[rgba(6,182,212,0.3)]"
           />
           <div className="space-y-2">
-            <p>Change Profile Picture</p>
+            <p className="text-[#94a3b8] text-sm">Change Profile Picture</p>
             <div className="flex flex-row gap-3">
               <input
                 type="file"
@@ -79,7 +79,7 @@ export default function ChangeProfilePicture() {
               <button
                 onClick={handleClick}
                 disabled={loading}
-                className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50"
+                className="border border-[rgba(6,182,212,0.15)] text-[#94a3b8] bg-transparent hover:border-[#06b6d4] hover:text-[#06b6d4] px-5 py-2.5 rounded-[4px] text-sm transition-all duration-150"
               >
                 Select
               </button>
@@ -88,7 +88,7 @@ export default function ChangeProfilePicture() {
                 onclick={handleFileUpload}
               >
                 {!loading && (
-                  <FiUpload className="text-lg text-richblack-900" />
+                  <FiUpload className="text-lg text-[#060d1a]" />
                 )}
               </IconBtn>
             </div>

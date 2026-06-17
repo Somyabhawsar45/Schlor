@@ -8,7 +8,7 @@ const LearningGridArray = [
     heading: "World-Class Learning for",
     highliteText: "Anyone, Anywhere",
     description:
-      "CodePlay partners with more than 275+ leading universities and companies to bring flexible, affordable, job-relevant online learning to individuals and organizations worldwide.",
+      "Schlor partners with more than 275+ leading universities and companies to bring flexible, affordable, job-relevant online learning to individuals and organizations worldwide.",
     BtnText: "Learn More",
     BtnLink: "/",
   },
@@ -22,25 +22,25 @@ const LearningGridArray = [
     order: 2,
     heading: "Our Learning Methods",
     description:
-      "CodePlay partners with more than 275+ leading universities and companies to bring",
+      "Schlor partners with more than 275+ leading universities and companies to bring",
   },
   {
     order: 3,
     heading: "Certification",
     description:
-      "CodePlay partners with more than 275+ leading universities and companies to bring",
+      "Schlor partners with more than 275+ leading universities and companies to bring",
   },
   {
     order: 4,
     heading: `Rating "Auto-grading"`,
     description:
-      "CodePlay partners with more than 275+ leading universities and companies to bring",
+      "Schlor partners with more than 275+ leading universities and companies to bring",
   },
   {
     order: 5,
     heading: "Ready to Work",
     description:
-      "CodePlay partners with more than 275+ leading universities and companies to bring",
+      "Schlor partners with more than 275+ leading universities and companies to bring",
   },
 ];
 
@@ -52,20 +52,18 @@ const LearningGrid = () => {
           <div
             key={i}
             className={`${i === 0 && "xl:col-span-2 xl:h-[294px]"}  ${
-              card.order % 2 === 1
-                ? "bg-richblack-700 h-[294px]"
-                : card.order % 2 === 0
-                ? "bg-richblack-800 h-[294px]"
+              card.order > 0
+                ? "bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] rounded-[4px] h-[294px]"
                 : "bg-transparent"
             } ${card.order === 3 && "xl:col-start-2"}  `}
           >
             {card.order < 0 ? (
               <div className="xl:w-[90%] flex flex-col gap-3 pb-10 xl:pb-0">
-                <div className="text-4xl font-semibold ">
+                <div className="text-4xl font-semibold text-[#f0f9ff]">
                   {card.heading}
                   <HighlightText text={card.highliteText} />
                 </div>
-                <p className="text-richblack-300 font-medium">
+                <p className="text-[#94a3b8] font-medium">
                   {card.description}
                 </p>
 
@@ -77,9 +75,9 @@ const LearningGrid = () => {
               </div>
             ) : (
               <div className="p-8 flex flex-col gap-8">
-                <h1 className="text-richblack-5 text-lg">{card.heading}</h1>
+                <h1 className="text-[#f0f9ff] text-lg">{card.heading}</h1>
 
-                <p className="text-richblack-300 font-medium">
+                <p className="text-[#94a3b8] font-medium">
                   {card.description}
                 </p>
               </div>

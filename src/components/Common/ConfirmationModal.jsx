@@ -2,12 +2,12 @@ import IconBtn from "./IconBtn"
 
 export default function ConfirmationModal({ modalData }) {
   return (
-    <div className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="w-11/12 max-w-[350px] rounded-lg border border-richblack-400 bg-richblack-800 p-6">
-        <p className="text-2xl font-semibold text-richblack-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-[rgba(6,13,26,0.85)]">
+      <div className="w-11/12 max-w-md rounded-[4px] border border-[rgba(6,182,212,0.15)] bg-[#0c1a2e] p-6">
+        <p className="mb-2 text-lg font-semibold text-[#f0f9ff]">
           {modalData?.text1}
         </p>
-        <p className="mt-3 mb-5 leading-6 text-richblack-200">
+        <p className="mb-6 text-sm text-[#94a3b8]">
           {modalData?.text2}
         </p>
         <div className="flex items-center gap-x-4">
@@ -16,7 +16,7 @@ export default function ConfirmationModal({ modalData }) {
             text={modalData?.btn1Text}
           />
           <button
-            className="cursor-pointer rounded-md bg-richblack-200 py-[8px] px-[20px] font-semibold text-richblack-900"
+            className="cursor-pointer rounded-[4px] border border-[rgba(6,182,212,0.15)] bg-transparent px-5 py-2.5 text-sm font-semibold text-[#94a3b8] transition-all duration-150 hover:border-[#06b6d4] hover:text-[#06b6d4]"
             onClick={modalData?.btn2Handler}
           >
             {modalData?.btn2Text}

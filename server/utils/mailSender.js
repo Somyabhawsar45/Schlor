@@ -1,5 +1,12 @@
 const nodemailer = require("nodemailer")
 
+const stripHtml = (html) =>
+  html
+    .replace(/<style[^>]*>.*?<\/style>/gis, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+
 const mailSender = async (email, title, body) => {
   try {
     let transporter = nodemailer.createTransport({
@@ -12,11 +19,19 @@ const mailSender = async (email, title, body) => {
     })
 
     let info = await transporter.sendMail({
-      from: `"SCHOLR | Somya" <${process.env.MAIL_USER}>`, // sender address
-      to: `${email}`, // list of receivers
-      subject: `${title}`, // Subject line
-      html: `${body}`, // html body
+      from: `"Schlor" <${process.env.MAIL_USER}>`,
+      to: email,
+      subject: title,
+      html: body,
+      text: stripHtml(body),
+      headers: {
+        "X-Priority": "3",
+        "X-Mailer": "Schlor Mailer",
+        "List-Unsubscribe": `<mailto:info@Schlor.com>`,
+        "Reply-To": process.env.MAIL_USER,
+      },
     })
+
     console.log(info.response)
     return info
   } catch (error) {

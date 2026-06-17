@@ -21,15 +21,15 @@ function RatingStars({ Review_Count, Star_Size }) {
     })
   }, [Review_Count])
   return (
-    <div className="flex gap-1 text-yellow-100">
+    <div className="flex gap-1">
       {[...new Array(starCount.full)].map((_, i) => {
-        return <TiStarFullOutline key={i} size={Star_Size || 20} />
+        return <TiStarFullOutline key={i} size={Star_Size || 20} className="text-[#06b6d4]" />
       })}
       {[...new Array(starCount.half)].map((_, i) => {
-        return <TiStarHalfOutline key={i} size={Star_Size || 20} />
+        return <TiStarHalfOutline key={i} size={Star_Size || 20} className="text-[#06b6d4]" />
       })}
       {[...new Array(starCount.empty)].map((_, i) => {
-        return <TiStarOutline key={i} size={Star_Size || 20} />
+        return <TiStarOutline key={i} size={Star_Size || 20} className="text-[rgba(6,182,212,0.2)]" />
       })}
     </div>
   )

@@ -22,7 +22,7 @@ const CodeBlocks = ({
         {heading}
 
         {/* Sub Heading */}
-        <div className="text-richblack-300 text-base font-bold w-[85%] -mt-3">
+        <div className="text-[#94a3b8] text-base font-bold w-[85%] -mt-3">
           {subheading}
         </div>
 
@@ -41,11 +41,11 @@ const CodeBlocks = ({
       </div>
 
       {/* Section 2 */}
-      <div className="h-fit code-border flex flex-row py-3 text-[10px] sm:text-sm leading-[18px] sm:leading-6 relative w-[100%] lg:w-[470px]">
-        {backgroundGradient}
+<div className="h-[280px] sm:h-[320px] bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] rounded-[4px] flex flex-row py-3 text-[10px] sm:text-sm leading-[18px] sm:leading-6 relative w-[100%] lg:w-[470px] overflow-hidden">        {backgroundGradient}
         {/* Indexing */}
-        <div className="text-center flex flex-col   w-[10%] select-none text-richblack-400 font-inter font-bold ">
-          <p>1</p>
+        <div className="text-center flex flex-col   w-[10%] select-none text-[rgba(6,182,212,0.35)] text-s font-inter font-bold ">
+          <p>1
+          </p>
           <p>2</p>
           <p>3</p>
           <p>4</p>
@@ -66,6 +66,7 @@ const CodeBlocks = ({
             sequence={[codeblock, 1000, ""]}
             cursor={true}
             repeat={Infinity}
+            speed ={58}
             style={{
               whiteSpace: "pre-line",
               display: "block",

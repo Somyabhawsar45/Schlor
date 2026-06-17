@@ -33,13 +33,11 @@ export default function PublishCourse() {
   }
 
   const handleCoursePublish = async () => {
-    // check if form has been updated or not
     if (
       (course?.status === COURSE_STATUS.PUBLISHED &&
         getValues("public") === true) ||
       (course?.status === COURSE_STATUS.DRAFT && getValues("public") === false)
     ) {
-      
       goToCourses()
       return
     }
@@ -58,13 +56,12 @@ export default function PublishCourse() {
   }
 
   const onSubmit = (data) => {
-    // console.log(data)
     handleCoursePublish()
   }
 
   return (
-    <div className="rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
-      <p className="text-2xl font-semibold text-richblack-5">
+    <div className="rounded-[4px] border border-[rgba(6,182,212,0.15)] bg-[#0c1a2e] p-6">
+      <p className="text-2xl font-semibold text-[#f0f9ff] mb-4">
         Publish Settings
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -75,9 +72,9 @@ export default function PublishCourse() {
               type="checkbox"
               id="public"
               {...register("public")}
-              className="border-gray-300 h-4 w-4 rounded bg-richblack-500 text-richblack-400 focus:ring-2 focus:ring-richblack-5"
+              className="h-4 w-4 rounded-[4px] border border-[rgba(6,182,212,0.15)] bg-transparent accent-[#06b6d4] focus:ring-1 focus:ring-[#06b6d4]"
             />
-            <span className="ml-2 text-richblack-400">
+            <span className="ml-2 text-[#94a3b8]">
               Make this course as public
             </span>
           </label>
@@ -89,7 +86,7 @@ export default function PublishCourse() {
             disabled={loading}
             type="button"
             onClick={goBack}
-            className="flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900"
+            className="flex cursor-pointer items-center gap-x-2 rounded-[4px] border border-[rgba(6,182,212,0.15)] text-[#94a3b8] bg-transparent hover:border-[#06b6d4] hover:text-[#06b6d4] py-[8px] px-[20px] text-sm transition-all duration-150"
           >
             Back
           </button>

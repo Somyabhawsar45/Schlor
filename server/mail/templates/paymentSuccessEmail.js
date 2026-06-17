@@ -1,85 +1,48 @@
 exports.paymentSuccessEmail = (name, amount, orderId, paymentId) => {
   return `<!DOCTYPE html>
-    <html>
-    
-    <head>
-        <meta charset="UTF-8">
-        <title>Payment Confirmation</title>
-        <style>
-            body {
-                background-color: #ffffff;
-                font-family: Arial, sans-serif;
-                font-size: 16px;
-                line-height: 1.4;
-                color: #333333;
-                margin: 0;
-                padding: 0;
-            }
-    
-    
-            .container {
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-                text-align: center;
-            }
-    
-            .logo {
-                max-width: 200px;
-                margin-bottom: 20px;
-            }
-    
-            .message {
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-    
-            .body {
-                font-size: 16px;
-                margin-bottom: 20px;
-            }
-    
-            .cta {
-                display: inline-block;
-                padding: 10px 20px;
-                background-color: #FFD60A;
-                color: #000000;
-                text-decoration: none;
-                border-radius: 5px;
-                font-size: 16px;
-                font-weight: bold;
-                margin-top: 20px;
-            }
-    
-            .support {
-                font-size: 14px;
-                color: #999999;
-                margin-top: 20px;
-            }
-    
-            .highlight {
-                font-weight: bold;
-            }
-        </style>
-    
-    </head>
-    
-    <body>
-        <div class="container">
-            <a href="https://codeplay-edtech-project.vercel.app"><img class="logo" src="https://i.ibb.co/g48x1XG/Untitled-design.png"
-                    alt="CodePlay Logo"></a>
-            <div class="message">Course Payment Confirmation</div>
-            <div class="body">
-                <p>Dear ${name},</p>
-                <p>We have received a payment of <span class='highlight'>₹${amount}</span></p>.
-                <p>Your Payment ID is <b>${paymentId}</b></p>
-                <p>Your Order ID is <b>${orderId}</b></p>
-            </div>
-            <div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
-                    href="mailto:info@codeplay.com">info@codeplay.com</a>. We are here to help!</div>
-        </div>
-    </body>
-    
-    </html>`
-}
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Payment Confirmation</title>
+</head>
+<body style="margin:0; padding:0; background-color:#060d1a; font-family: Arial, sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#060d1a; padding: 40px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="500" cellpadding="0" cellspacing="0" style="background-color:#0c1a2e; border:1px solid rgba(6,182,212,0.15); border-radius:4px; padding: 32px;">
+          <tr>
+            <td align="center" style="padding-bottom: 24px;">
+              <a href="https://codeplay-edtech-project.vercel.app">
+<span style="font-size:22px; font-weight:bold; color:#f0f9ff; letter-spacing:1px;">SCHL<span style="color:#06b6d4;">OR</span></span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="font-size:18px; font-weight:bold; color:#f0f9ff; padding-bottom:16px;">
+              Course Payment Confirmation
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size:15px; color:#94a3b8; line-height:1.6;">
+              <p style="margin:0 0 12px;">Dear ${name},</p>
+              <p style="margin:0 0 12px;">
+                We have received a payment of <span style="color:#06b6d4; font-weight:bold;">₹${amount}</span>.
+              </p>
+              <p style="margin:0 0 6px;">Your Payment ID is <b style="color:#f0f9ff;">${paymentId}</b></p>
+              <p style="margin:0 0 6px;">Your Order ID is <b style="color:#f0f9ff;">${orderId}</b></p>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="font-size:13px; color:#64748b; padding-top: 24px; border-top: 1px solid rgba(6,182,212,0.08);">
+              If you have any questions, reach out at
+              <a href="mailto:info@codeplay.com" style="color:#06b6d4; text-decoration:none;">info@codeplay.com</a>.
+              We're here to help!
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+};

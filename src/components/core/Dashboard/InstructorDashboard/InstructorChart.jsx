@@ -8,14 +8,12 @@ export default function InstructorChart({ courses }) {
   // State to keep track of the currently selected chart
   const [currChart, setCurrChart] = useState("students")
 
-  // Function to generate random colors for the chart
+  // Function to generate colors for the chart, cycling through the cyan palette
   const generateRandomColors = (numColors) => {
+    const palette = ["#06b6d4", "#0891b2", "#67e8f9", "#0369a1"]
     const colors = []
     for (let i = 0; i < numColors; i++) {
-      const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-        Math.random() * 256
-      )}, ${Math.floor(Math.random() * 256)})`
-      colors.push(color)
+      colors.push(palette[i % palette.length])
     }
     return colors
   }
@@ -45,19 +43,33 @@ export default function InstructorChart({ courses }) {
   // Options for the chart
   const options = {
     maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        labels: {
+          color: "#94a3b8",
+        },
+      },
+      tooltip: {
+        backgroundColor: "#0c1a2e",
+        borderColor: "rgba(6,182,212,0.15)",
+        borderWidth: 1,
+        titleColor: "#f0f9ff",
+        bodyColor: "#94a3b8",
+      },
+    },
   }
 
   return (
-    <div className="flex flex-1 flex-col gap-y-4 rounded-md bg-richblack-800 p-6">
-      <p className="text-lg font-bold text-richblack-5">Visualize</p>
+    <div className="flex flex-1 flex-col gap-y-4 bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] rounded-[4px] p-5">
+      <p className="text-lg font-semibold text-[#f0f9ff] mb-4">Visualize</p>
       <div className="space-x-4 font-semibold">
         {/* Button to switch to the "students" chart */}
         <button
           onClick={() => setCurrChart("students")}
-          className={`rounded-sm p-1 px-3 transition-all duration-200 ${
+          className={`rounded-[4px] p-1 px-3 transition-all duration-200 ${
             currChart === "students"
-              ? "bg-richblack-700 text-yellow-50"
-              : "text-yellow-400"
+              ? "bg-[rgba(6,182,212,0.08)] text-[#06b6d4]"
+              : "text-[#94a3b8] hover:text-[#f0f9ff]"
           }`}
         >
           Students
@@ -65,10 +77,10 @@ export default function InstructorChart({ courses }) {
         {/* Button to switch to the "income" chart */}
         <button
           onClick={() => setCurrChart("income")}
-          className={`rounded-sm p-1 px-3 transition-all duration-200 ${
+          className={`rounded-[4px] p-1 px-3 transition-all duration-200 ${
             currChart === "income"
-              ? "bg-richblack-700 text-yellow-50"
-              : "text-yellow-400"
+              ? "bg-[rgba(6,182,212,0.08)] text-[#06b6d4]"
+              : "text-[#94a3b8] hover:text-[#f0f9ff]"
           }`}
         >
           Income

@@ -78,7 +78,7 @@ function CourseDetails() {
 
   if (loading || !response) {
     return (
-      <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+      <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center bg-[#060d1a]">
         <div className="spinner"></div>
       </div>
     )
@@ -119,7 +119,7 @@ function CourseDetails() {
   if (paymentLoading) {
     // console.log("payment loading")
     return (
-      <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+      <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center bg-[#060d1a]">
         <div className="spinner"></div>
       </div>
     )
@@ -127,39 +127,38 @@ function CourseDetails() {
 
   return (
     <>
-      <div className={`relative w-full bg-richblack-800`}>
+      <div className={`relative w-full bg-[#0c1a2e] border-b border-[rgba(6,182,212,0.15)]`}>
         {/* Hero Section */}
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative ">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
             <div className="relative block max-h-[30rem] lg:hidden">
-              <div className="absolute bottom-0 left-0 h-full w-full shadow-[#161D29_0px_-64px_36px_-28px_inset]"></div>
               <img
                 src={thumbnail}
                 alt="course thumbnail"
-                className="aspect-auto w-full"
+                className="aspect-auto w-full border border-[rgba(6,182,212,0.15)] rounded-[4px]"
               />
             </div>
             <div
-              className={`z-30 my-5 flex flex-col justify-center gap-4 py-5 text-lg text-richblack-5`}
+              className={`z-30 my-5 flex flex-col justify-center gap-4 py-5 text-lg text-[#f0f9ff]`}
             >
               <div>
-                <p className="text-4xl font-bold text-richblack-5 sm:text-[42px]">
+                <p className="text-2xl font-bold text-[#f0f9ff] sm:text-[42px]">
                   {courseName}
                 </p>
               </div>
-              <p className={`text-richblack-200`}>{courseDescription}</p>
+              <p className={`text-[#94a3b8]`}>{courseDescription}</p>
               <div className="text-md flex flex-wrap items-center gap-2">
-                <span className="text-yellow-25">{avgReviewCount}</span>
+                <span className="text-[#06b6d4] font-bold">{avgReviewCount}</span>
                 <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
-                <span>{`(${ratingAndReviews.length} reviews)`}</span>
-                <span>{`${studentsEnroled.length} students enrolled`}</span>
+                <span className="text-[#94a3b8] text-sm">{`(${ratingAndReviews.length} reviews)`}</span>
+                <span className="text-[#94a3b8] text-sm">{`${studentsEnroled.length} students enrolled`}</span>
               </div>
               <div>
-                <p className="">
+                <p className="text-[#06b6d4]">
                   Created By {`${instructor.firstName} ${instructor.lastName}`}
                 </p>
               </div>
-              <div className="flex flex-wrap gap-5 text-lg">
+              <div className="flex flex-wrap gap-5 text-lg text-[#94a3b8]">
                 <p className="flex items-center gap-2">
                   {" "}
                   <BiInfoCircle /> Created at {formatDate(createdAt)}
@@ -170,14 +169,19 @@ function CourseDetails() {
                 </p>
               </div>
             </div>
-            <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
-              <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
+            <div className="flex w-full flex-col gap-4 border-y border-[rgba(6,182,212,0.15)] py-4 lg:hidden">
+              <p className="space-x-3 pb-4 text-3xl font-semibold text-[#06b6d4]">
                 Rs. {price}
               </p>
-              <button className="yellowButton" onClick={handleBuyCourse}>
+              <button
+                className="border border-[#06b6d4] text-[#06b6d4] bg-transparent hover:bg-[#06b6d4] hover:text-[#060d1a] px-5 py-2.5 rounded-[4px] text-sm font-semibold transition-all duration-150"
+                onClick={handleBuyCourse}
+              >
                 Buy Now
               </button>
-              <button className="blackButton">Add to Cart</button>
+              <button className="border border-[rgba(6,182,212,0.15)] text-[#94a3b8] bg-transparent hover:border-[#06b6d4] hover:text-[#06b6d4] px-5 py-2.5 rounded-[4px] text-sm transition-all duration-150">
+                Add to Cart
+              </button>
             </div>
           </div>
           {/* Courses Card */}
@@ -190,12 +194,12 @@ function CourseDetails() {
           </div>
         </div>
       </div>
-      <div className="mx-auto box-content px-4 text-start text-richblack-5 lg:w-[1260px]">
+      <div className="mx-auto box-content px-4 text-start text-[#f0f9ff] lg:w-[1260px] bg-[#060d1a]">
         <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
           {/* What will you learn section */}
-          <div className="my-8 border border-richblack-600 p-8">
-            <p className="text-3xl font-semibold">What you'll learn</p>
-            <div className="mt-5">
+          <div className="my-8 border border-[rgba(6,182,212,0.15)] rounded-[4px] p-8">
+            <p className="text-3xl font-semibold text-[#f0f9ff]">What you'll learn</p>
+            <div className="mt-5 text-[#94a3b8]">
               <ReactMarkdown>{whatYouWillLearn}</ReactMarkdown>
             </div>
           </div>
@@ -203,8 +207,8 @@ function CourseDetails() {
           {/* Course Content Section */}
           <div className="max-w-[830px] ">
             <div className="flex flex-col gap-3">
-              <p className="text-[28px] font-semibold">Course Content</p>
-              <div className="flex flex-wrap justify-between gap-2">
+              <p className="text-[28px] font-semibold text-[#f0f9ff]">Course Content</p>
+              <div className="flex flex-wrap justify-between gap-2 text-[#94a3b8] text-sm">
                 <div className="flex gap-2">
                   <span>
                     {courseContent.length} {`section(s)`}
@@ -216,7 +220,7 @@ function CourseDetails() {
                 </div>
                 <div>
                   <button
-                    className="text-yellow-25"
+                    className="text-[#06b6d4] hover:text-[#67e8f9] transition-colors duration-150"
                     onClick={() => setIsActive([])}
                   >
                     Collapse all sections
@@ -239,7 +243,7 @@ function CourseDetails() {
 
             {/* Author Details */}
             <div className="mb-12 py-4">
-              <p className="text-[28px] font-semibold">Author</p>
+              <p className="text-[28px] font-semibold text-[#f0f9ff]">Author</p>
               <div className="flex items-center gap-4 py-4">
                 <img
                   src={
@@ -248,11 +252,11 @@ function CourseDetails() {
                       : `https://api.dicebear.com/5.x/initials/svg?seed=${instructor.firstName} ${instructor.lastName}`
                   }
                   alt="Author"
-                  className="h-14 w-14 rounded-full object-cover"
+                  className="h-14 w-14 rounded-[4px] object-cover border border-[rgba(6,182,212,0.15)]"
                 />
-                <p className="text-lg">{`${instructor.firstName} ${instructor.lastName}`}</p>
+                <p className="text-lg text-[#06b6d4]">{`${instructor.firstName} ${instructor.lastName}`}</p>
               </div>
-              <p className="text-richblack-50">
+              <p className="text-[#94a3b8]">
                 {instructor?.additionalDetails?.about}
               </p>
             </div>

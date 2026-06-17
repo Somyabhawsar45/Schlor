@@ -17,26 +17,26 @@ export default function CourseAccordionBar({ course, isActive, handleActive }) {
   }, [active])
 
   return (
-    <div className="overflow-hidden border border-solid border-richblack-600 bg-richblack-700 text-richblack-5 last:mb-0">
+    <div className="overflow-hidden border border-[rgba(6,182,212,0.15)] rounded-[4px] mb-2 bg-[#0c1a2e] text-[#f0f9ff] last:mb-0">
       <div>
         <div
-          className={`flex cursor-pointer items-start justify-between bg-opacity-20 px-7  py-6 transition-[0.3s]`}
+          className={`flex cursor-pointer items-start justify-between px-4 py-3 hover:bg-[rgba(6,182,212,0.05)] transition-colors`}
           onClick={() => {
             handleActive(course._id)
           }}
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 font-semibold">
             <i
-              className={
+              className={`text-[#06b6d4] ${
                 isActive.includes(course._id) ? "rotate-180" : "rotate-0"
-              }
+              }`}
             >
               <AiOutlineDown />
             </i>
             <p>{course?.sectionName}</p>
           </div>
           <div className="space-x-4">
-            <span className="text-yellow-25">
+            <span className="text-[#94a3b8] text-xs">
               {`${course.subSection.length || 0} lecture(s)`}
             </span>
           </div>
@@ -44,12 +44,12 @@ export default function CourseAccordionBar({ course, isActive, handleActive }) {
       </div>
       <div
         ref={contentEl}
-        className={`relative h-0 overflow-hidden bg-richblack-900 transition-[height] duration-[0.35s] ease-[ease]`}
+        className={`relative h-0 overflow-hidden bg-[#060d1a] border-t border-[rgba(6,182,212,0.08)] transition-[height] duration-[0.35s] ease-[ease]`}
         style={{
           height: sectionHeight,
         }}
       >
-        <div className="text-textHead flex flex-col gap-2 px-7 py-6 font-semibold">
+        <div className="text-[#f0f9ff] flex flex-col gap-2 px-7 py-6 font-semibold">
           {course?.subSection?.map((subSec, i) => {
             return <CourseSubSectionAccordion subSec={subSec} key={i} />
           })}

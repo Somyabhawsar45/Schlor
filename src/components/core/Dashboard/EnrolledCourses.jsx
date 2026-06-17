@@ -35,20 +35,20 @@ const navigate = useNavigate()
 
   return (
     <>
-      <div className="text-3xl text-richblack-50">Enrolled Courses</div>
+      <div className="text-2xl font-bold text-[#f0f9ff] mb-6">Enrolled Courses</div>
       {!enrolledCourses ? (
-        <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+        <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center bg-[#060d1a]">
           <div className="spinner"></div>
         </div>
       ) : !enrolledCourses.length ? (
-        <p className="grid h-[10vh] w-full place-content-center text-richblack-5">
+        <p className="grid h-[10vh] w-full place-content-center text-[#94a3b8]">
           You have not enrolled in any course yet.
           {/* TODO: Modify this Empty State */}
         </p>
       ) : (
-        <div className="my-8 text-richblack-5">
+        <div className="my-8 text-[#f0f9ff]">
           {/* Headings */}
-          <div className="flex rounded-t-lg bg-richblack-500 ">
+          <div className="flex rounded-t-[4px] bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] text-[#94a3b8] text-xs uppercase tracking-widest">
             <p className="w-[45%] px-5 py-3">Course Name</p>
             <p className="w-1/4 px-2 py-3">Duration</p>
             <p className="flex-1 px-2 py-3">Progress</p>
@@ -56,8 +56,8 @@ const navigate = useNavigate()
           {/* Course Names */}
           {enrolledCourses.map((course, i, arr) => (
             <div
-              className={`flex items-center border border-richblack-700 ${
-                i === arr.length - 1 ? "rounded-b-lg" : "rounded-none"
+              className={`flex items-center bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] border-t-0 hover:border-[#06b6d4] transition-all duration-200 ${
+                i === arr.length - 1 ? "rounded-b-[4px]" : "rounded-none"
               }`}
               key={i}
             >
@@ -72,24 +72,26 @@ const navigate = useNavigate()
                 <img
                   src={course.thumbnail}
                   alt="course_img"
-                  className="h-14 w-14 rounded-lg object-cover"
+                  className="h-14 w-14 rounded-[4px] object-cover border border-[rgba(6,182,212,0.15)]"
                 />
                 <div className="flex max-w-xs flex-col gap-2">
-                  <p className="font-semibold">{course.courseName}</p>
-                  <p className="text-xs text-richblack-300">
+                  <p className="font-semibold text-[#f0f9ff] text-sm">{course.courseName}</p>
+                  <p className="text-xs text-[#94a3b8]">
                     {course.courseDescription.length > 50
                       ? `${course.courseDescription.slice(0, 50)}...`
                       : course.courseDescription}
                   </p>
                 </div>
               </div>
-              <div className="w-1/4 px-2 py-3">{course?.totalDuration}</div>
+              <div className="w-1/4 px-2 py-3 text-[#94a3b8] text-sm">{course?.totalDuration}</div>
               <div className="flex w-1/5 flex-col gap-2 px-2 py-3">
-                <p>Progress: {course.progressPercentage || 0}%</p>
+                <p className="text-[#94a3b8] text-xs">Progress: {course.progressPercentage || 0}%</p>
                 <ProgressBar
                   completed={course.progressPercentage || 0}
-                  height="8px"
+                  height="4px"
                   isLabelVisible={false}
+                  bgColor="#06b6d4"
+                  baseBgColor="rgba(6,182,212,0.1)"
                 />
               </div>
             </div>

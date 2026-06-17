@@ -18,11 +18,9 @@ export default function NestedView({ handleChangeEditSectionName }) {
   const { course } = useSelector((state) => state.course)
   const { token } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
-  // States to keep track of mode of modal [add, view, edit]
   const [addSubSection, setAddSubsection] = useState(null)
   const [viewSubSection, setViewSubSection] = useState(null)
   const [editSubSection, setEditSubSection] = useState(null)
-  // to keep track of confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(null)
 
   const handleDeleleSection = async (sectionId) => {
@@ -40,7 +38,6 @@ export default function NestedView({ handleChangeEditSectionName }) {
   const handleDeleteSubSection = async (subSectionId, sectionId) => {
     const result = await deleteSubSection({ subSectionId, sectionId, token })
     if (result) {
-      // update the structure of course
       const updatedCourseContent = course.courseContent.map((section) =>
         section._id === sectionId ? result : section
       )
@@ -53,17 +50,15 @@ export default function NestedView({ handleChangeEditSectionName }) {
   return (
     <>
       <div
-        className="rounded-lg bg-richblack-700 p-6 px-8"
+        className="rounded-[4px] bg-[#060d1a] border border-[rgba(6,182,212,0.15)] p-6 px-8"
         id="nestedViewContainer"
       >
         {course?.courseContent?.map((section) => (
-          // Section Dropdown
           <details key={section._id} open>
-            {/* Section Dropdown Content */}
-            <summary className="flex cursor-pointer items-center justify-between border-b-2 border-b-richblack-600 py-2">
+            <summary className="flex cursor-pointer items-center justify-between border-b border-b-[rgba(6,182,212,0.15)] py-2">
               <div className="flex items-center gap-x-3">
-                <RxDropdownMenu className="text-2xl text-richblack-50" />
-                <p className="font-semibold text-richblack-50">
+                <RxDropdownMenu className="text-2xl text-[rgba(6,182,212,0.35)]" />
+                <p className="font-semibold text-[#f0f9ff]">
                   {section.sectionName}
                 </p>
               </div>
@@ -76,7 +71,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
                     )
                   }
                 >
-                  <MdEdit className="text-xl text-richblack-300" />
+                  <MdEdit className="text-xl text-[#94a3b8] hover:text-[#06b6d4] transition-colors duration-150" />
                 </button>
                 <button
                   onClick={() =>
@@ -90,23 +85,22 @@ export default function NestedView({ handleChangeEditSectionName }) {
                     })
                   }
                 >
-                  <RiDeleteBin6Line className="text-xl text-richblack-300" />
+                  <RiDeleteBin6Line className="text-xl text-[#94a3b8] hover:text-[#ef4444] transition-colors duration-150" />
                 </button>
-                <span className="font-medium text-richblack-300">|</span>
-                <AiFillCaretDown className={`text-xl text-richblack-300`} />
+                <span className="font-medium text-[rgba(6,182,212,0.35)]">|</span>
+                <AiFillCaretDown className="text-xl text-[#94a3b8]" />
               </div>
             </summary>
             <div className="px-6 pb-4">
-              {/* Render All Sub Sections Within a Section */}
               {section.subSection.map((data) => (
                 <div
                   key={data?._id}
                   onClick={() => setViewSubSection(data)}
-                  className="flex cursor-pointer items-center justify-between gap-x-3 border-b-2 border-b-richblack-600 py-2"
+                  className="flex cursor-pointer items-center justify-between gap-x-3 border-b border-b-[rgba(6,182,212,0.08)] py-2 hover:bg-[rgba(6,182,212,0.03)] transition-colors duration-150"
                 >
-                  <div className="flex items-center gap-x-3 py-2 ">
-                    <RxDropdownMenu className="text-2xl text-richblack-50" />
-                    <p className="font-semibold text-richblack-50">
+                  <div className="flex items-center gap-x-3 py-2">
+                    <RxDropdownMenu className="text-2xl text-[rgba(6,182,212,0.35)]" />
+                    <p className="font-semibold text-[#94a3b8]">
                       {data.title}
                     </p>
                   </div>
@@ -119,7 +113,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
                         setEditSubSection({ ...data, sectionId: section._id })
                       }
                     >
-                      <MdEdit className="text-xl text-richblack-300" />
+                      <MdEdit className="text-xl text-[#94a3b8] hover:text-[#06b6d4] transition-colors duration-150" />
                     </button>
                     <button
                       onClick={() =>
@@ -134,15 +128,14 @@ export default function NestedView({ handleChangeEditSectionName }) {
                         })
                       }
                     >
-                      <RiDeleteBin6Line className="text-xl text-richblack-300" />
+                      <RiDeleteBin6Line className="text-xl text-[#94a3b8] hover:text-[#ef4444] transition-colors duration-150" />
                     </button>
                   </div>
                 </div>
               ))}
-              {/* Add New Lecture to Section */}
               <button
                 onClick={() => setAddSubsection(section._id)}
-                className="mt-3 flex items-center gap-x-1 text-yellow-50"
+                className="mt-3 flex items-center gap-x-1 text-[#06b6d4] hover:text-[#0891b2] transition-colors duration-150"
               >
                 <FaPlus className="text-lg" />
                 <p>Add Lecture</p>
@@ -151,7 +144,6 @@ export default function NestedView({ handleChangeEditSectionName }) {
           </details>
         ))}
       </div>
-      {/* Modal Display */}
       {addSubSection ? (
         <SubSectionModal
           modalData={addSubSection}
@@ -173,7 +165,6 @@ export default function NestedView({ handleChangeEditSectionName }) {
       ) : (
         <></>
       )}
-      {/* Confirmation Modal */}
       {confirmationModal ? (
         <ConfirmationModal modalData={confirmationModal} />
       ) : (

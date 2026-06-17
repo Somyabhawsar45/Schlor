@@ -31,13 +31,9 @@ export default function CourseBuilderForm() {
   const [editSectionName, setEditSectionName] = useState(null)
   const dispatch = useDispatch()
 
-  // handle form submission
   const onSubmit = async (data) => {
-    // console.log(data)
     setLoading(true)
-
     let result
-
     if (editSectionName) {
       result = await updateSection(
         {
@@ -47,7 +43,6 @@ export default function CourseBuilderForm() {
         },
         token
       )
-      // console.log("edit", result)
     } else {
       result = await createSection(
         {
@@ -58,7 +53,6 @@ export default function CourseBuilderForm() {
       )
     }
     if (result) {
-      // console.log("section result", result)
       dispatch(setCourse(result))
       setEditSectionName(null)
       setValue("sectionName", "")
@@ -100,12 +94,12 @@ export default function CourseBuilderForm() {
   }
 
   return (
-    <div className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
-      <p className="text-2xl font-semibold text-richblack-5">Course Builder</p>
+    <div className="space-y-8 rounded-[4px] border border-[rgba(6,182,212,0.15)] bg-[#0c1a2e] p-6">
+      <p className="text-2xl font-semibold text-[#f0f9ff]">Course Builder</p>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col space-y-2">
-          <label className="text-sm text-richblack-5" htmlFor="sectionName">
-            Section Name <sup className="text-pink-200">*</sup>
+          <label className="text-xs font-medium text-[#94a3b8]" htmlFor="sectionName">
+            Section Name <sup className="text-[#06b6d4]">*</sup>
           </label>
           <input
             id="sectionName"
@@ -115,7 +109,7 @@ export default function CourseBuilderForm() {
             className="form-style w-full"
           />
           {errors.sectionName && (
-            <span className="ml-2 text-xs tracking-wide text-pink-200">
+            <span className="ml-2 text-xs tracking-wide text-[#06b6d4]">
               Section name is required
             </span>
           )}
@@ -127,13 +121,13 @@ export default function CourseBuilderForm() {
             text={editSectionName ? "Edit Section Name" : "Create Section"}
             outline={true}
           >
-            <IoAddCircleOutline size={20} className="text-yellow-50" />
+            <IoAddCircleOutline size={20} className="text-[#06b6d4]" />
           </IconBtn>
           {editSectionName && (
             <button
               type="button"
               onClick={cancelEdit}
-              className="text-sm text-richblack-300 underline"
+              className="text-sm text-[#94a3b8] hover:text-[#06b6d4] underline transition-colors duration-150"
             >
               Cancel Edit
             </button>
@@ -147,7 +141,7 @@ export default function CourseBuilderForm() {
       <div className="flex justify-end gap-x-3">
         <button
           onClick={goBack}
-          className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
+          className="flex cursor-pointer items-center gap-x-2 rounded-[4px] border border-[rgba(6,182,212,0.15)] text-[#94a3b8] bg-transparent hover:border-[#06b6d4] hover:text-[#06b6d4] py-[8px] px-[20px] text-sm transition-all duration-150"
         >
           Back
         </button>

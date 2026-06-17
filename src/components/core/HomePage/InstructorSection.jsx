@@ -9,11 +9,12 @@ const InstructorSection = () => {
     <div>
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-[50%]">
-            <img
-              src={Instructor}
-              alt=""
-              className="shadow-white shadow-[-20px_-20px_0_0]"
-            />
+           <img
+  src={Instructor}
+  alt=""
+  className="border border-[rgba(6,182,212,0.15)] rounded-[4px]"
+  style={{ boxShadow: "-20px -20px 0px 0px rgba(6,182,212,0.25)" }}
+/>
           </div>
           <div className="lg:w-[50%] flex gap-10 flex-col">
             <h1 className="lg:w-[50%] text-4xl font-semibold ">
@@ -21,7 +22,7 @@ const InstructorSection = () => {
               <HighlightText text={"instructor"} />
             </h1>
 
-            <p className="font-medium text-[16px] text-justify w-[90%] text-richblack-300">
+            <p className="font-medium text-[16px] text-justify w-[90%] text-[#94a3b8]">
               Instructors from around the world teach millions of students on
               CodePlay. We provide the tools and skills to teach what you
               love.

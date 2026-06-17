@@ -1,87 +1,59 @@
 const otpTemplate = (otp) => {
-	return `<!DOCTYPE html>
-	<html>
-	
-	<head>
-		<meta charset="UTF-8">
-		<title>OTP Verification Email</title>
-		<style>
-			body {
-				background-color: #ffffff;
-				font-family: Arial, sans-serif;
-				font-size: 16px;
-				line-height: 1.4;
-				color: #333333;
-				margin: 0;
-				padding: 0;
-			}
-	
-			.container {
-				max-width: 600px;
-				margin: 0 auto;
-				padding: 20px;
-				text-align: center;
-			}
-	
-			.logo {
-				max-width: 200px;
-				margin-bottom: 20px;
-			}
-	
-			.message {
-				font-size: 18px;
-				font-weight: bold;
-				margin-bottom: 20px;
-			}
-	
-			.body {
-				font-size: 16px;
-				margin-bottom: 20px;
-			}
-	
-			.cta {
-				display: inline-block;
-				padding: 10px 20px;
-				background-color: #FFD60A;
-				color: #000000;
-				text-decoration: none;
-				border-radius: 5px;
-				font-size: 16px;
-				font-weight: bold;
-				margin-top: 20px;
-			}
-	
-			.support {
-				font-size: 14px;
-				color: #999999;
-				margin-top: 20px;
-			}
-	
-			.highlight {
-				font-weight: bold;
-			}
-		</style>
-	
-	</head>
-	
-	<body>
-		<div class="container">
-			<a href="https://codeplay-edtech-project.vercel.app"><img class="logo"
-					src="https://i.ibb.co/g48x1XG/Untitled-design.png" alt="CodePlay Logo"></a>
-			<div class="message">OTP Verification Email</div>
-			<div class="body">
-				<p>Dear User,</p>
-				<p>Thank you for registering with CodePlay. To complete your registration, please use the following OTP
-					(One-Time Password) to verify your account:</p>
-				<h2 class="highlight">${otp}</h2>
-				<p>This OTP is valid for 5 minutes. If you did not request this verification, please disregard this email.
-				Once your account is verified, you will have access to our platform and its features.</p>
-			</div>
-			<div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
-					href="mailto:info@codeplay.com">info@codeplay.com</a>. We are here to help!</div>
-		</div>
-	</body>
-	
-	</html>`;
+  return `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>OTP Verification</title>
+</head>
+<body style="margin:0; padding:0; background-color:#060d1a; font-family: Arial, sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#060d1a; padding: 40px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="500" cellpadding="0" cellspacing="0" style="background-color:#0c1a2e; border:1px solid rgba(6,182,212,0.15); border-radius:4px; padding: 32px;">
+          <tr>
+            <td align="center" style="padding-bottom: 24px;">
+              <span style="font-size:22px; font-weight:bold; color:#f0f9ff; letter-spacing:1px;">SCHL<span style="color:#06b6d4;">OR</span>
+
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="font-size:18px; font-weight:bold; color:#f0f9ff; padding-bottom:16px;">
+              OTP Verification
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size:15px; color:#94a3b8; line-height:1.6;">
+              <p style="margin:0 0 12px;">Dear User,</p>
+              <p style="margin:0 0 20px;">
+                Thank you for registering with Schlor. Use the OTP below to verify your account:
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 20px 0;">
+              <div style="display:inline-block; background-color:#060d1a; border:1px solid #06b6d4; border-radius:4px; padding: 16px 40px;">
+                <span style="font-size:32px; font-weight:bold; color:#06b6d4; letter-spacing:4px;">${otp}</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size:14px; color:#94a3b8; line-height:1.6; padding-top:16px;">
+              <p style="margin:0 0 8px;">This OTP is valid for <span style="color:#f0f9ff; font-weight:bold;">5 minutes</span>.</p>
+              <p style="margin:0;">If you did not request this, please ignore this email.</p>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="font-size:13px; color:#64748b; padding-top: 24px; border-top: 1px solid rgba(6,182,212,0.08); margin-top:24px;">
+              Need help? Contact us at
+              <a href="mailto:info@Schlor.com" style="color:#06b6d4; text-decoration:none;">info@Schlor.com</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
 };
+
 module.exports = otpTemplate;

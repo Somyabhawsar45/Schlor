@@ -31,16 +31,15 @@ export default function Upload({
     }
   }
 
-const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
-  accept: !video
-    ? { "image/*": [".jpeg", ".jpg", ".png"] }
-    : { "video/*": [".mp4"] },
-  onDrop,
-  noClick: true,
-})
+  const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
+    accept: !video
+      ? { "image/*": [".jpeg", ".jpg", ".png"] }
+      : { "video/*": [".mp4"] },
+    onDrop,
+    noClick: true,
+  })
 
   const previewFile = (file) => {
-    // console.log(file)
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onloadend = () => {
@@ -60,13 +59,15 @@ const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
 
   return (
     <div className="flex flex-col space-y-2">
-      <label className="text-sm text-richblack-5" htmlFor={name}>
-        {label} {!viewData && <sup className="text-pink-200">*</sup>}
+      <label className="text-xs font-medium text-[#94a3b8]" htmlFor={name}>
+        {label} {!viewData && <sup className="text-[#06b6d4]">*</sup>}
       </label>
       <div
         className={`${
-          isDragActive ? "bg-richblack-600" : "bg-richblack-700"
-        } flex min-h-[250px] cursor-pointer items-center justify-center rounded-md border-2 border-dotted border-richblack-500`}
+          isDragActive
+            ? "border-[#06b6d4] bg-[rgba(6,182,212,0.06)]"
+            : "border-[rgba(6,182,212,0.3)] bg-[rgba(6,182,212,0.03)]"
+        } flex min-h-[250px] cursor-pointer items-center justify-center rounded-[4px] border-2 border-dotted transition-all duration-150`}
       >
         {previewSource ? (
           <div className="flex w-full flex-col p-6">
@@ -74,7 +75,7 @@ const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
               <img
                 src={previewSource}
                 alt="Preview"
-                className="h-full w-full rounded-md object-cover"
+                className="h-full w-full rounded-[4px] object-cover"
               />
             ) : (
               <Player aspectRatio="16:9" playsInline src={previewSource} />
@@ -87,7 +88,7 @@ const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
                   setSelectedFile(null)
                   setValue(name, null)
                 }}
-                className="mt-3 text-richblack-400 underline"
+                className="mt-3 text-[#94a3b8] hover:text-[#06b6d4] underline transition-colors duration-150"
               >
                 Cancel
               </button>
@@ -95,32 +96,31 @@ const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
           </div>
         ) : (
           <div
-  className="flex w-full flex-col items-center p-6"
-  {...getRootProps({
-    onClick: () => {
-      console.log("DROPZONE CLICKED");
-      open();
-    },
-  })}
->
+            className="flex w-full flex-col items-center p-6"
+            {...getRootProps({
+              onClick: () => {
+                open()
+              },
+            })}
+          >
             <input {...getInputProps()} ref={inputRef} />
-            <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800">
-              <FiUploadCloud className="text-2xl text-yellow-50" />
+            <div className="grid aspect-square w-14 place-items-center rounded-[4px] bg-[rgba(6,182,212,0.08)] border border-[rgba(6,182,212,0.15)]">
+              <FiUploadCloud className="text-2xl text-[#06b6d4]" />
             </div>
-            <p className="mt-2 max-w-[200px] text-center text-sm text-richblack-200">
+            <p className="mt-2 max-w-[200px] text-center text-sm text-[#94a3b8]">
               Drag and drop an {!video ? "image" : "video"}, or click to{" "}
               <span
-  className="font-semibold text-yellow-50 cursor-pointer"
-  onClick={(e) => {
-    e.stopPropagation()
-    open()
-  }}
->
-  Browse
-</span> a
-              file
+                className="font-semibold text-[#06b6d4] hover:text-[#0891b2] cursor-pointer transition-colors duration-150"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  open()
+                }}
+              >
+                Browse
+              </span>{" "}
+              a file
             </p>
-            <ul className="mt-10 flex list-disc justify-between space-x-12 text-center  text-xs text-richblack-200">
+            <ul className="mt-10 flex list-disc justify-between space-x-12 text-center text-xs text-[#94a3b8]">
               <li>Aspect ratio 16:9</li>
               <li>Recommended size 1024x576</li>
             </ul>
@@ -128,7 +128,7 @@ const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
         )}
       </div>
       {errors[name] && (
-        <span className="ml-2 text-xs tracking-wide text-pink-200">
+        <span className="ml-2 text-xs tracking-wide text-[#06b6d4]">
           {label} is required
         </span>
       )}

@@ -34,14 +34,12 @@ function Template({ title, description1, description2, image, formType }) {
               height={504}
               loading="lazy"
             />
-            <img
-              src={image}
-              alt="Students"
-              width={558}
-              height={504}
-              loading="lazy"
-              className="absolute -top-4 right-4 z-10"
-            />
+           <img
+  src={image}
+  alt="Students"
+  loading="lazy"
+  className="absolute -top-4 right-4 z-10 w-[450px] h-[480px] object-cover"
+/>
           </div>
         </div>
       )}

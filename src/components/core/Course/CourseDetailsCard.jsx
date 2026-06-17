@@ -51,22 +51,22 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   return (
     <>
       <div
-        className={`flex flex-col gap-4 rounded-md bg-richblack-700 p-4 text-richblack-5`}
+        className={`flex flex-col gap-4 bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] rounded-[4px] p-5 text-[#f0f9ff]`}
       >
         {/* Course Image */}
         <img
           src={ThumbnailImage}
           alt={course?.courseName}
-          className="max-h-[300px] min-h-[180px] w-[400px] overflow-hidden rounded-2xl object-cover md:max-w-full"
+          className="max-h-[300px] min-h-[180px] w-[400px] overflow-hidden rounded-[4px] border border-[rgba(6,182,212,0.15)] object-cover md:max-w-full"
         />
 
         <div className="px-4">
-          <div className="space-x-3 pb-4 text-3xl font-semibold">
+          <div className="space-x-3 pb-4 text-3xl font-bold text-[#06b6d4]">
             Rs. {CurrentPrice}
           </div>
           <div className="flex flex-col gap-4">
             <button
-              className="yellowButton"
+              className="w-full border border-[#06b6d4] text-[#06b6d4] bg-transparent hover:bg-[#06b6d4] hover:text-[#060d1a] px-5 py-2.5 rounded-[4px] text-sm font-semibold transition-all duration-150"
               onClick={
                 user && course?.studentsEnroled.includes(user?._id)
                   ? () => navigate("/dashboard/enrolled-courses")
@@ -78,26 +78,29 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
                 : "Buy Now"}
             </button>
             {(!user || !course?.studentsEnroled.includes(user?._id)) && (
-              <button onClick={handleAddToCart} className="blackButton">
+              <button
+                onClick={handleAddToCart}
+                className="w-full border border-[rgba(6,182,212,0.15)] text-[#94a3b8] bg-transparent hover:border-[#06b6d4] hover:text-[#06b6d4] py-2.5 rounded-[4px] transition-all duration-150"
+              >
                 Add to Cart
               </button>
             )}
           </div>
           <div>
-            <p className="pb-3 pt-6 text-center text-sm text-richblack-25">
+            <p className="pb-3 pt-6 text-center text-sm text-[#94a3b8]">
               30-Day Money-Back Guarantee
             </p>
           </div>
 
           <div className={``}>
-            <p className={`my-2 text-xl font-semibold `}>
+            <p className={`my-2 text-xl font-semibold text-[#f0f9ff]`}>
               This Course Includes :
             </p>
-            <div className="flex flex-col gap-3 text-sm text-caribbeangreen-100">
+            <div className="flex flex-col gap-3 text-sm text-[#94a3b8]">
               {course?.instructions?.map((item, i) => {
                 return (
                   <p className={`flex gap-2`} key={i}>
-                    <BsFillCaretRightFill />
+                    <BsFillCaretRightFill className="text-[#06b6d4]" />
                     <span>{item}</span>
                   </p>
                 )
@@ -106,7 +109,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
           </div>
           <div className="text-center">
             <button
-              className="mx-auto flex items-center gap-2 py-6 text-yellow-100 "
+              className="mx-auto flex items-center gap-2 py-6 text-[#94a3b8] hover:text-[#06b6d4] text-xs underline transition-colors duration-150"
               onClick={handleShare}
             >
               <FaShareSquare size={15} /> Share

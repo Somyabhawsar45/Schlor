@@ -20,7 +20,7 @@ export default function Sidebar() {
 
   if (profileLoading || authLoading) {
     return (
-      <div className="grid h-[calc(100vh-3.5rem)] min-w-[220px] items-center border-r-[1px] border-r-richblack-700 bg-richblack-800">
+      <div className="grid h-[calc(100vh-3.5rem)] min-w-[220px] items-center border-r border-[rgba(6,182,212,0.15)] bg-[#0c1a2e]">
         <div className="spinner"></div>
       </div>
     )
@@ -28,7 +28,7 @@ export default function Sidebar() {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10">
+      <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r border-[rgba(6,182,212,0.15)] bg-[#0c1a2e] py-6">
         <div className="flex flex-col">
           {sidebarLinks.map((link) => {
             if (link.type && user?.accountType !== link.type) return null
@@ -37,8 +37,8 @@ export default function Sidebar() {
             )
           })}
         </div>
-        <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-700" />
-        <div className="flex flex-col">
+        <div className="mx-auto my-3 h-[1px] w-10/12 border-t border-[rgba(6,182,212,0.08)]" />
+        <div className="flex flex-col mt-auto">
           <SidebarLink
             link={{ name: "Settings", path: "/dashboard/settings" }}
             iconName="VscSettingsGear"
@@ -54,7 +54,7 @@ export default function Sidebar() {
                 btn2Handler: () => setConfirmationModal(null),
               })
             }
-            className="px-8 py-2 text-sm font-medium text-richblack-300"
+            className="mt-3 mx-5 border border-[rgba(6,182,212,0.15)] text-[#94a3b8] hover:border-[#06b6d4] hover:text-[#06b6d4] px-4 py-2 rounded-[4px] text-sm transition-all duration-150"
           >
             <div className="flex items-center gap-x-2">
               <VscSignOut className="text-lg" />
