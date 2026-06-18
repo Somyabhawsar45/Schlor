@@ -12,7 +12,7 @@ const otpTemplate = (otp) => {
         <table role="presentation" width="500" cellpadding="0" cellspacing="0" style="background-color:#0c1a2e; border:1px solid rgba(6,182,212,0.15); border-radius:4px; padding: 32px;">
           <tr>
             <td align="center" style="padding-bottom: 24px;">
-              <span style="font-size:22px; font-weight:bold; color:#f0f9ff; letter-spacing:1px;">SCHL<span style="color:#06b6d4;">OR</span>
+              <span style="font-size:22px; font-weight:bold; color:#f0f9ff; letter-spacing:1px;">SCHO<span style="color:#06b6d4;">LR</span>
 
             </td>
           </tr>
@@ -25,7 +25,7 @@ const otpTemplate = (otp) => {
             <td style="font-size:15px; color:#94a3b8; line-height:1.6;">
               <p style="margin:0 0 12px;">Dear User,</p>
               <p style="margin:0 0 20px;">
-                Thank you for registering with Schlor. Use the OTP below to verify your account:
+                Thank you for registering with Scholr. Use the OTP below to verify your account:
               </p>
             </td>
           </tr>
@@ -45,7 +45,7 @@ const otpTemplate = (otp) => {
           <tr>
             <td align="center" style="font-size:13px; color:#64748b; padding-top: 24px; border-top: 1px solid rgba(6,182,212,0.08); margin-top:24px;">
               Need help? Contact us at
-              <a href="mailto:info@Schlor.com" style="color:#06b6d4; text-decoration:none;">info@Schlor.com</a>
+              <a href="mailto:info@Scholr.com" style="color:#06b6d4; text-decoration:none;">info@Scholr.com</a>
             </td>
           </tr>
         </table>

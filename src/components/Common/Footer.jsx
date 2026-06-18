@@ -32,7 +32,7 @@ const Footer = () => {
             <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
 <img
   src={Logo}
-  alt="Schlor"
+  alt="Scholr"
   className="h-14 w-auto mb-8 -ml-7"
 />              <h1 className="text-[#f0f9ff] font-semibold text-sm mb-3">
                 Company
@@ -175,7 +175,7 @@ const Footer = () => {
             })}
           </div>
 
-          <div className="text-center">Made with ❤️ || Schlor</div>
+          <div className="text-center">Made with ❤️ || Scholr</div>
         </div>
       </div>
     </div>
