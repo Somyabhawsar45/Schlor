@@ -55,16 +55,10 @@ app.get("/", (req, res) => {
 		message: "Your server is up and running ...",
 	});
 });
+
 // Listening to the server
 app.listen(PORT, () => {
 	console.log(`App is listening at ${PORT}`);
 });
-
-// Prevent Render free tier sleep
-setInterval(() => {
-	fetch(`https://schlor-backend.onrender.com/`)
-		.then(() => console.log("Server pinged"))
-		.catch((err) => console.log("Ping error:", err))
-}, 14 * 60 * 1000)
 
 // End of code.
