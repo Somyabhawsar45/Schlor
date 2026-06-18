@@ -10,16 +10,12 @@ const stripHtml = (html) =>
 const mailSender = async (email, title, body) => {
   try {
 let transporter = nodemailer.createTransport({
-  host: "74.125.133.108",  // Gmail SMTP IPv4 address
-  port: 587,
+  host: process.env.MAIL_HOST,
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
   },
   secure: false,
-  tls: {
-    servername: "smtp.gmail.com"
-  }
 })
     let info = await transporter.sendMail({
       from: `"Schlor" <${process.env.MAIL_USER}>`,
