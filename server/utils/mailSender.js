@@ -1,44 +1,19 @@
-const nodemailer = require("nodemailer")
-const dns = require("dns")
-dns.setDefaultResultOrder("ipv4first")
+const { Resend } = require("resend")
 
-const stripHtml = (html) =>
-  html
-    .replace(/<style[^>]*>.*?<\/style>/gis, "")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 const mailSender = async (email, title, body) => {
   try {
-    let transporter = nodemailer.createTransport({
-      host: process.env.MAIL_HOST,
-      port: 587,
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-      },
-      secure: false,
-    })
-
-    let info = await transporter.sendMail({
-      from: `"Schlor" <${process.env.MAIL_USER}>`,
+    const data = await resend.emails.send({
+      from: "Schlor <onboarding@resend.dev>",
       to: email,
       subject: title,
       html: body,
-      text: stripHtml(body),
-      headers: {
-        "X-Priority": "3",
-        "X-Mailer": "Schlor Mailer",
-        "List-Unsubscribe": `<mailto:info@Schlor.com>`,
-        "Reply-To": process.env.MAIL_USER,
-      },
     })
-
-    console.log(info.response)
-    return info
+    console.log("Email sent successfully:", data)
+    return data
   } catch (error) {
-    console.log(error.message)
+    console.log("Email error:", error.message)
     return error.message
   }
 }
