@@ -205,13 +205,18 @@ export default function CourseInformationForm() {
           defaultValue=""
           id="courseCategory"
           className="form-style w-full"
+          style={{ backgroundColor: "#0c1a2e", color: "#f0f9ff" }}
         >
-          <option value="" disabled>
+          <option value="" disabled style={{ backgroundColor: "#0c1a2e", color: "#94a3b8" }}>
             Choose a Category
           </option>
           {!loading &&
             courseCategories?.map((category, indx) => (
-              <option key={indx} value={category?._id}>
+              <option
+                key={indx}
+                value={category?._id}
+                style={{ backgroundColor: "#0c1a2e", color: "#f0f9ff" }}
+              >
                 {category?.name}
               </option>
             ))}
