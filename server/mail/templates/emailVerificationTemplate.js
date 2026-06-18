@@ -12,7 +12,7 @@ const otpTemplate = (otp) => {
         <table role="presentation" width="500" cellpadding="0" cellspacing="0" style="background-color:#0c1a2e; border:1px solid rgba(6,182,212,0.15); border-radius:4px; padding: 32px;">
           <tr>
             <td align="center" style="padding-bottom: 24px;">
-              <span style="font-size:22px; font-weight:bold; color:#f0f9ff; letter-spacing:1px;">SCHO<span style="color:#06b6d4;">LR</span>
+              <span style="font-size:22px; font-weight:bold; color:#f0f9ff; letter-spacing:1px;">SCHO<span style="color:#06b6d4;">LR</span></span>
 
             </td>
           </tr>

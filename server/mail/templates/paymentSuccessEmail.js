@@ -12,24 +12,33 @@ exports.paymentSuccessEmail = (name, amount, orderId, paymentId) => {
         <table role="presentation" width="500" cellpadding="0" cellspacing="0" style="background-color:#0c1a2e; border:1px solid rgba(6,182,212,0.15); border-radius:4px; padding: 32px;">
           <tr>
             <td align="center" style="padding-bottom: 24px;">
-          <a href="https://scholr.vercel.app">
-<span style="font-size:22px; font-weight:bold; color:#f0f9ff; letter-spacing:1px;">SCHO<span style="color:#06b6d4;">LR</span></span>
+              <a href="https://scholr.vercel.app">
+                <span style="font-size:22px; font-weight:bold; color:#f0f9ff; letter-spacing:1px;">SCHO<span style="color:#06b6d4;">LR</span></span>
               </a>
             </td>
           </tr>
           <tr>
             <td align="center" style="font-size:18px; font-weight:bold; color:#f0f9ff; padding-bottom:16px;">
-              Course Payment Confirmation
+              Payment Successful 🎉
             </td>
           </tr>
           <tr>
             <td style="font-size:15px; color:#94a3b8; line-height:1.6;">
               <p style="margin:0 0 12px;">Dear ${name},</p>
               <p style="margin:0 0 12px;">
-                We have received a payment of <span style="color:#06b6d4; font-weight:bold;">₹${amount}</span>.
+                Thank you for your purchase! We have successfully received your payment of <span style="color:#06b6d4; font-weight:bold;">₹${amount}</span>.
               </p>
-              <p style="margin:0 0 6px;">Your Payment ID is <b style="color:#f0f9ff;">${paymentId}</b></p>
-              <p style="margin:0 0 6px;">Your Order ID is <b style="color:#f0f9ff;">${orderId}</b></p>
+              <p style="margin:0 0 12px;">
+                You can now access your enrolled courses from your dashboard.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 24px 0;">
+              <a href="https://scholr.vercel.app/dashboard/enrolled-courses" 
+                style="background-color:#06b6d4; color:#060d1a; padding:12px 32px; border-radius:4px; text-decoration:none; font-weight:bold; font-size:15px;">
+                Go to Dashboard
+              </a>
             </td>
           </tr>
           <tr>

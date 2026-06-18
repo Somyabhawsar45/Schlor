@@ -13,7 +13,7 @@ exports.courseEnrollmentEmail = (courseName, name) => {
           <tr>
             <td align="center" style="padding-bottom: 24px;">
               <a href="https://codeplay-edtech-project.vercel.app">
-              <span style="font-size:22px; font-weight:bold; color:#f0f9ff; letter-spacing:1px;">SCHL<span style="color:#06b6d4;">OR</span></span>
+              <span style="font-size:22px; font-weight:bold; color:#f0f9ff; letter-spacing:1px;">SCHO<span style="color:#06b6d4;">LR</span></span>
 
               </a>
             </td>

@@ -77,10 +77,12 @@ export async function BuyCourse(
         name: `${user_details.firstName} ${user_details.lastName}`,
         email: user_details.email,
       },
-      handler: function (response) {
-        sendPaymentSuccessEmail(response, orderResponse.data.data.amount, token)
-        verifyPayment({ ...response, courses }, token, navigate, dispatch)
-      },
+   handler: function (response) {
+  console.log("PAYMENT SUCCESS - calling email and verify") // ADD THIS
+  console.log("Response:", response) // ADD THIS
+  sendPaymentSuccessEmail(response, orderResponse.data.data.amount, token)
+  verifyPayment({ ...response, courses }, token, navigate, dispatch)
+},
     }
     const paymentObject = new window.Razorpay(options)
 
