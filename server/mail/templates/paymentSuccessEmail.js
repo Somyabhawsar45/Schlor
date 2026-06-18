@@ -12,7 +12,7 @@ exports.paymentSuccessEmail = (name, amount, orderId, paymentId) => {
         <table role="presentation" width="500" cellpadding="0" cellspacing="0" style="background-color:#0c1a2e; border:1px solid rgba(6,182,212,0.15); border-radius:4px; padding: 32px;">
           <tr>
             <td align="center" style="padding-bottom: 24px;">
-              <a href="https://codeplay-edtech-project.vercel.app">
+          <a href="https://schlor.vercel.app">
 <span style="font-size:22px; font-weight:bold; color:#f0f9ff; letter-spacing:1px;">SCHL<span style="color:#06b6d4;">OR</span></span>
               </a>
             </td>
@@ -35,7 +35,7 @@ exports.paymentSuccessEmail = (name, amount, orderId, paymentId) => {
           <tr>
             <td align="center" style="font-size:13px; color:#64748b; padding-top: 24px; border-top: 1px solid rgba(6,182,212,0.08);">
               If you have any questions, reach out at
-              <a href="mailto:info@codeplay.com" style="color:#06b6d4; text-decoration:none;">info@codeplay.com</a>.
+              <a href="mailto:info@Schlor.com" style="color:#06b6d4; text-decoration:none;">info@codeplay.com</a>.
               We're here to help!
             </td>
           </tr>
