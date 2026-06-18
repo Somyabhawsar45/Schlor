@@ -3,7 +3,7 @@
 Scholr is a full-stack EdTech platform built with the MERN stack, enabling students to enroll in courses and instructors to create and manage them.
 
 ## 🚀 Live Demo
-[https://scholr.vercel.app](https://scholr.vercel.app)
+[https://schlor.vercel.app](https://schlor.vercel.app)
 
 ## 🛠️ Tech Stack
 
