@@ -1,39 +1,27 @@
 const nodemailer = require("nodemailer")
 
-const stripHtml = (html) =>
-  html
-    .replace(/<style[^>]*>.*?<\/style>/gis, "")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-
 const mailSender = async (email, title, body) => {
   try {
-
     let transporter = nodemailer.createTransport({
       host: process.env.MAIL_HOST,
-      port: 587,
-      secure: false,
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
       },
+      secure: false,
     })
 
     let info = await transporter.sendMail({
-      from: `"Schlor" <${process.env.MAIL_USER}>`,
-      to: email,
-      subject: title,
-      html: body,
-      text: stripHtml(body),
+      from: `"Schlor | Somya" <${process.env.MAIL_USER}>`, // sender address
+      to: `${email}`, // list of receivers
+      subject: `${title}`, // Subject line
+      html: `${body}`, // html body
     })
-
-    console.log("Email sent successfully:", info.response)
+    console.log(info.response)
     return info
-
   } catch (error) {
-    console.log("Email error:", error)
-    throw error
+    console.log(error.message)
+    return error.message
   }
 }
 
