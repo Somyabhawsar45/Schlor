@@ -7,7 +7,7 @@ const {
   checkCertificateEligibility,
   downloadCertificate,
   verifyCertificate,
-} = require("../controllers/certificate")
+} = require("../controllers/Certificate")
 
 // Check if student is eligible / certificate exists for a course
 router.get("/check/:courseId", auth, isStudent, checkCertificateEligibility)
