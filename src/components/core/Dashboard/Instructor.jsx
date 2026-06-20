@@ -44,80 +44,87 @@ export default function Instructor() {
           Hi {user?.firstName} 👋
         </h1>
         <p className="font-medium text-[#94a3b8] text-sm">
-          Let's start something new
+          Here's how your courses are performing
         </p>
       </div>
+
       {loading ? (
         <div className="spinner"></div>
       ) : courses.length > 0 ? (
         <div>
-          <div className="my-4 flex h-[450px] space-x-4">
-            {/* Render chart / graph */}
+          {/* Stat cards row */}
+          <div className="my-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="relative overflow-hidden rounded-[6px] border border-[rgba(6,182,212,0.15)] bg-[#0c1a2e] p-5">
+              <div className="absolute left-0 top-0 h-full w-1 bg-[#06b6d4]" />
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#94a3b8]">
+                Total Courses
+              </p>
+              <p className="mt-2 text-3xl font-bold text-[#f0f9ff]">
+                {courses.length}
+              </p>
+            </div>
+            <div className="relative overflow-hidden rounded-[6px] border border-[rgba(6,182,212,0.15)] bg-[#0c1a2e] p-5">
+              <div className="absolute left-0 top-0 h-full w-1 bg-[#0891b2]" />
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#94a3b8]">
+                Total Students
+              </p>
+              <p className="mt-2 text-3xl font-bold text-[#f0f9ff]">
+                {totalStudents}
+              </p>
+            </div>
+            <div className="relative overflow-hidden rounded-[6px] border border-[rgba(6,182,212,0.15)] bg-[#0c1a2e] p-5">
+              <div className="absolute left-0 top-0 h-full w-1 bg-[#67e8f9]" />
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#94a3b8]">
+                Total Income
+              </p>
+              <p className="mt-2 text-3xl font-bold text-[#f0f9ff]">
+                Rs. {totalAmount?.toLocaleString("en-IN")}
+              </p>
+            </div>
+          </div>
+
+          {/* Performance chart */}
+          <div className="flex h-[420px]">
             {totalAmount > 0 || totalStudents > 0 ? (
               <InstructorChart courses={instructorData} />
             ) : (
-              <div className="flex-1 bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] rounded-[4px] p-5">
-                <p className="text-lg font-bold text-[#f0f9ff]">Visualize</p>
+              <div className="flex-1 rounded-[6px] border border-[rgba(6,182,212,0.15)] bg-[#0c1a2e] p-5">
+                <p className="text-lg font-bold text-[#f0f9ff]">Course Performance</p>
                 <p className="mt-4 text-xl font-medium text-[#94a3b8]">
-                  Not Enough Data To Visualize
+                  Not enough data to visualize yet
                 </p>
               </div>
             )}
-            {/* Total Statistics */}
-            <div className="flex min-w-[250px] flex-col bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] rounded-[4px] p-5">
-              <p className="text-lg font-bold text-[#f0f9ff]">Statistics</p>
-              <div className="mt-4 space-y-4">
-                <div>
-                  <p className="text-sm text-[#94a3b8]">Total Courses</p>
-                  <p className="text-3xl font-bold text-[#06b6d4]">
-                    {courses.length}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-[#94a3b8]">Total Students</p>
-                  <p className="text-3xl font-bold text-[#06b6d4]">
-                    {totalStudents}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-[#94a3b8]">Total Income</p>
-                  <p className="text-3xl font-bold text-[#06b6d4]">
-                    Rs. {totalAmount}
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
-          <div className="bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] rounded-[4px] p-5">
-            {/* Render 3 courses */}
+
+          {/* Course list */}
+          <div className="mt-6 rounded-[6px] border border-[rgba(6,182,212,0.15)] bg-[#0c1a2e] p-5">
             <div className="flex items-center justify-between">
               <p className="text-lg font-bold text-[#f0f9ff]">Your Courses</p>
               <Link to="/dashboard/my-courses">
-                <p className="text-xs font-semibold text-[#06b6d4] hover:text-[#67e8f9] transition-colors duration-150">View All</p>
+                <p className="text-xs font-semibold text-[#06b6d4] hover:text-[#67e8f9] transition-colors duration-150">
+                  View All
+                </p>
               </Link>
             </div>
-            <div className="my-4 flex items-start space-x-6">
+            <div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {courses.slice(0, 3).map((course) => (
-                <div key={course._id} className="w-1/3">
+                <div
+                  key={course._id}
+                  className="overflow-hidden rounded-[6px] border border-[rgba(6,182,212,0.15)] bg-[#060d1a] transition-all duration-200 hover:border-[#06b6d4]"
+                >
                   <img
                     src={course.thumbnail}
                     alt={course.courseName}
-                    className="h-[201px] w-full rounded-[4px] object-cover border border-[rgba(6,182,212,0.15)]"
+                    className="h-[160px] w-full object-cover"
                   />
-                  <div className="mt-3 w-full">
-                    <p className="text-sm font-medium text-[#f0f9ff]">
+                  <div className="p-3">
+                    <p className="truncate text-sm font-semibold text-[#f0f9ff]">
                       {course.courseName}
                     </p>
-                    <div className="mt-1 flex items-center space-x-2">
-                      <p className="text-xs font-medium text-[#94a3b8]">
-                        {course.studentsEnroled.length} students
-                      </p>
-                      <p className="text-xs font-medium text-[#94a3b8]">
-                        |
-                      </p>
-                      <p className="text-xs font-medium text-[#94a3b8]">
-                        Rs. {course.price}
-                      </p>
+                    <div className="mt-2 flex items-center justify-between text-xs font-medium text-[#94a3b8]">
+                      <span>{course.studentsEnroled.length} students</span>
+                      <span className="text-[#06b6d4]">Rs. {course.price}</span>
                     </div>
                   </div>
                 </div>
@@ -126,7 +133,7 @@ export default function Instructor() {
           </div>
         </div>
       ) : (
-        <div className="mt-20 bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] rounded-[4px] p-6 py-20">
+        <div className="mt-20 rounded-[6px] border border-[rgba(6,182,212,0.15)] bg-[#0c1a2e] p-6 py-20">
           <p className="text-center text-2xl font-bold text-[#f0f9ff]">
             You have not created any courses yet
           </p>

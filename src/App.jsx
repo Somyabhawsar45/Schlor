@@ -34,6 +34,8 @@ import VerifyEmail from "./pages/VerifyEmail"
 import ViewCourse from "./pages/ViewCourse"
 import { getUserDetails } from "./services/operations/profileAPI"
 import { ACCOUNT_TYPE } from "./utils/constants"
+import VerifyCertificate from "./pages/VerifyCertificate"
+
 
 function App() {
   const dispatch = useDispatch()
@@ -57,6 +59,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="courses/:courseId" element={<CourseDetails />} />
         <Route path="catalog/:catalogName" element={<Catalog />} />
+        <Route path="/verify-certificate/:certificateId" element={<VerifyCertificate />} />
+
         {/* Open Route - for Only Non Logged in User */}
         <Route
           path="login"

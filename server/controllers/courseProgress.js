@@ -1,8 +1,10 @@
+// server/controllers/courseProgress.js
 const mongoose = require("mongoose")
 const Section = require("../models/Section")
 const SubSection = require("../models/Subsection")
 const CourseProgress = require("../models/CourseProgress")
 const Course = require("../models/Course")
+const Certificate = require("../models/Certificate")
 
 exports.updateCourseProgress = async (req, res) => {
   const { courseId, subsectionId } = req.body
@@ -22,29 +24,58 @@ exports.updateCourseProgress = async (req, res) => {
     })
 
     if (!courseProgress) {
-      // If course progress doesn't exist, create a new one
       return res.status(404).json({
         success: false,
         message: "Course progress Does Not Exist",
       })
     } else {
-      // If course progress exists, check if the subsection is already completed
       if (courseProgress.completedVideos.includes(subsectionId)) {
         return res.status(400).json({ error: "Subsection already completed" })
       }
-
-      // Push the subsection into the completedVideos array
       courseProgress.completedVideos.push(subsectionId)
     }
 
-    // Save the updated course progress
     await courseProgress.save()
 
-    return res.status(200).json({ message: "Course progress updated" })
+    // ---- Certificate auto-eligibility check ----
+    // Count total subsections in this course to compare against completedVideos
+    const course = await Course.findById(courseId).populate({
+      path: "courseContent",
+      populate: { path: "subSection" },
+    })
+
+    let totalSubsections = 0
+    if (course && course.courseContent) {
+      totalSubsections = course.courseContent.reduce(
+        (acc, section) => acc + (section.subSection?.length || 0),
+        0
+      )
+    }
+
+    let certificateIssued = false
+
+    if (
+      totalSubsections > 0 &&
+      courseProgress.completedVideos.length === totalSubsections
+    ) {
+      // Course fully completed — issue a certificate if one doesn't exist yet
+      const existingCert = await Certificate.findOne({
+        userId,
+        courseID: courseId,
+      })
+
+      if (!existingCert) {
+        await Certificate.create({ userId, courseID: courseId })
+      }
+      certificateIssued = true
+    }
+
+    return res.status(200).json({
+      message: "Course progress updated",
+      certificateIssued,
+    })
   } catch (error) {
     console.error(error)
     return res.status(500).json({ error: "Internal server error" })
   }
 }
-
-

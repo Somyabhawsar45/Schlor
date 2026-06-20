@@ -70,3 +70,9 @@ export const settingsEndpoints = {
   CHANGE_PASSWORD_API: BASE_URL + "/auth/changepassword",
   DELETE_PROFILE_API: BASE_URL + "/profile/deleteProfile",
 }
+
+export const certificateEndpoints = {
+  CHECK_CERTIFICATE_API: BASE_URL + "/certificate/check",
+  DOWNLOAD_CERTIFICATE_API: BASE_URL + "/certificate/download",
+  VERIFY_CERTIFICATE_API: BASE_URL + "/certificate/verify",
+}
