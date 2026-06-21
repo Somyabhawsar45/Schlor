@@ -12,13 +12,15 @@ const mailSender = async (email, title, body) => {
       secure: false,
     })
 
-    let info = await transporter.sendMail({
-      from: `"Scholr | Somya" <${process.env.MAIL_FROM}>`, // sender address
-      to: `${email}`, // list of receivers
-      subject: `${title}`, // Subject line
-      html: `${body}`, // html body
-    })
-    console.log(info.response)
+let info = await transporter.sendMail({
+  from: `"Scholr | Somya" <somyabhawsar194@gmail.com>`,
+  to: `${email}`,
+  subject: `${title}`,
+  html: `${body}`,
+})
+console.log("FULL INFO:", JSON.stringify(info))
+console.log("REJECTED:", info.rejected)
+console.log("RESPONSE:", info.response)
     return info
   } catch (error) {
     console.log(error.message)
