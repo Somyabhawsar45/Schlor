@@ -62,7 +62,7 @@ function Home() {
             <CTAButton active={true} linkto={"/signup"}>
               Start Learning
             </CTAButton>
-            <CTAButton active={false} linkto={"/catalog"}>
+            <CTAButton active={false} linkto={"/catalog/web-development"}>
               Browse Courses
             </CTAButton>
           </div>

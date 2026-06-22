@@ -24,7 +24,7 @@ const InstructorSection = () => {
 
             <p className="font-medium text-[16px] text-justify w-[90%] text-[#94a3b8]">
               Instructors from around the world teach millions of students on
-              CodePlay. We provide the tools and skills to teach what you
+              Scholr. We provide the tools and skills to teach what you
               love.
             </p>
 

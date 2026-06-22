@@ -74,8 +74,8 @@ exports.contactUsEmail = (
   
   <body>
       <div class="container">
-          <a href="https://codeplay-edtech-project.vercel.app"><img class="logo"
-                  src="https://i.ibb.co/g48x1XG/Untitled-design.png" alt="CodePlay Logo"></a>
+          <a href="https://schlor.vercel.app"><img class="logo"
+                  src="https://i.ibb.co/g48x1XG/Untitled-design.png" alt="Scholr Logo"></a>
           <div class="message">Contact Form Confirmation</div>
           <div class="body">
               <p>Dear ${firstname} ${lastname},</p>
@@ -89,7 +89,7 @@ exports.contactUsEmail = (
               <p>We appreciate your interest and will get back to you shortly. </p>
           </div>
           <div class="support">If you have any further questions or need immediate assistance, please feel free to reach
-              out to us at <a href="mailto:info@codeplay.com">info@codeplay.com</a>. We are here to help!</div>
+              out to us at <a href="mailto:info@Scholr.com">info@Scholr.com</a>. We are here to help!</div>
       </div>
   </body>
   
