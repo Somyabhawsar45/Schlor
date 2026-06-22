@@ -35,55 +35,57 @@ function Home() {
 
         </svg>
 
-        <div className="relative z-10 mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-center gap-8 py-16 text-white">
+        <div className="relative z-10 mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-center gap-6 py-16 text-white">
           {/* Become a Instructor Button */}
           <Link to={"/signup"}>
             <div className="group mx-auto w-fit rounded-[4px] bg-[#0c1a2e] border border-[rgba(6,182,212,0.15)] p-1 font-bold text-[#94a3b8] transition-all duration-200 hover:scale-95 hover:border-[#06b6d4] hover:text-[#06b6d4]">
               <div className="flex flex-row items-center gap-2 rounded-[4px] px-10 py-[5px] transition-all duration-200 group-hover:bg-[rgba(6,182,212,0.08)]">
-                <p>Become an Instructor</p>
+                <p>Join as Instructor</p>
                 <FaArrowRight />
               </div>
             </div>
           </Link>
-{/* Heading */}
-<div className="mx-auto max-w-3xl text-center text-4xl font-semibold leading-tight text-[#f0f9ff]">
-  Skills That Get You
-  <HighlightText text={"Hired and Certified."} />
-</div>
 
-{/* Sub Heading */}
-<div className="-mt-3 w-[90%] max-w-xl text-center text-base font-normal text-[#94a3b8]">
-  Hands-on courses, real projects, and a verified certificate.
-</div>
+          {/* Heading */}
+          <div className="mx-auto max-w-3xl text-center text-5xl font-bold leading-tight text-[#f0f9ff] mt-1">
+            Learn. Build.
+            <HighlightText text={"Get Hired."} />
+          </div>
+
+          {/* Sub Heading */}
+          <div className="w-[90%] max-w-xl text-center text-base font-normal text-[#94a3b8]">
+            Project-based learning for the next generation of developers.
+          </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-row gap-7">
             <CTAButton active={true} linkto={"/signup"}>
-              Learn More
+              Start Learning
             </CTAButton>
-            <CTAButton active={false} linkto={"/login"}>
-              Book a Demo
+            <CTAButton active={false} linkto={"/catalog"}>
+              Browse Courses
             </CTAButton>
           </div>
 
           {/* Image — wide rectangular frame */}
-<div className="relative mx-3 mt-7 mb-2 aspect-[2/1] w-full max-w-4xl overflow-hidden rounded-[4px] border border-[#06b6d4] glow-active shadow-[0_0_40px_rgba(6,182,212,0.15)]"> <img
-    src={HeroImage}
-    alt="Programmer working at a multi-monitor coding setup"
-    className="h-full w-full object-cover"
-  />
-  <div
-    className="pointer-events-none absolute inset-0"
-    style={{
-      background:
-        "linear-gradient(to top, rgba(6,13,26,0.55), transparent 55%)",
-    }}
-  />
-</div>
+          <div className="relative mx-3 mt-7 mb-2 aspect-[2/1] w-full max-w-4xl overflow-hidden rounded-[4px] border border-[#06b6d4] glow-active shadow-[0_0_40px_rgba(6,182,212,0.15)]">
+            <img
+              src={HeroImage}
+              alt="Programmer working at a multi-monitor coding setup"
+              className="h-full w-full object-cover"
+            />
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(6,13,26,0.55), transparent 55%)",
+              }}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Code + Explore section — unchanged, sits below the hero */}
+      {/* Code + Explore section */}
       <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 text-white">
         {/* Code Section 1 */}
         <div>
@@ -91,13 +93,12 @@ function Home() {
             position={"lg:flex-row"}
             heading={
               <div className="text-4xl font-semibold text-[#f0f9ff]">
-                Unlock your
-                <HighlightText text={"coding potential"} /> with our online
-                courses.
+                Code your way to
+                <HighlightText text={"your dream job."} />
               </div>
             }
             subheading={
-              "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
+              "Every course is built around real projects — not theory. Learn from practitioners, not just teachers."
             }
             ctabtn1={{
               btnText: "Try it Yourself",
@@ -139,12 +140,12 @@ function Home() {
             position={"lg:flex-row-reverse"}
             heading={
               <div className="w-[100%] text-4xl font-semibold text-[#f0f9ff] lg:w-[50%]">
-                Start
-                <HighlightText text={"coding in seconds"} />
+                Zero setup.
+                <HighlightText text={"Pure focus."} />
               </div>
             }
             subheading={
-              "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
+              "Open Schlor. Pick a course. Write your first line of code in under 60 seconds."
             }
             ctabtn1={{
               btnText: "Continue Lesson",
@@ -185,8 +186,8 @@ function Home() {
       </div>
 
       {/* Section 2 */}
-   <div className="bg-[#060d1a] text-[#94a3b8]">
-  <div className="bg-[#060d1a] h-[320px]">
+      <div className="bg-[#060d1a] text-[#94a3b8]">
+        <div className="bg-[#060d1a] h-[320px]">
           <div className="mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8">
             <div className="lg:h-[150px]"></div>
             <div className="flex flex-row gap-7 text-white lg:mt-8">
@@ -207,17 +208,16 @@ function Home() {
           {/* Job that is in Demand - Section 1 */}
           <div className="mb-10 mt-[-100px] flex flex-col justify-between gap-7 lg:mt-20 lg:flex-row lg:gap-0">
             <div className="text-4xl font-semibold text-[#f0f9ff] lg:w-[45%]">
-              Get the skills you need for a{" "}
-              <HighlightText text={"job that is in demand."} />
+              Built for the
+              <HighlightText text={"jobs of tomorrow."} />
             </div>
             <div className="flex flex-col items-start gap-10 lg:w-[40%]">
               <div className="text-[16px] text-[#94a3b8]">
-                The moder Scholr is the dictates its own terms. Today, to
-                be a competitive specialist requires more than professional
-                skills.
+                The industry moves fast. Schlor keeps you faster — with curriculum
+                designed around what companies are actually hiring for right now.
               </div>
               <CTAButton active={true} linkto={"/signup"}>
-                <div className="">Learn More</div>
+                <div className="">Start Learning</div>
               </CTAButton>
             </div>
           </div>
@@ -237,7 +237,7 @@ function Home() {
 
         {/* Reviews from Other Learners */}
         <h1 className="text-center text-4xl font-semibold mt-8 text-[#f0f9ff]">
-          Reviews from other learners
+          Loved by learners worldwide.
         </h1>
         <ReviewSlider />
       </div>
