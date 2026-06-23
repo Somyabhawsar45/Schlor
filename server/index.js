@@ -14,35 +14,28 @@ const { cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 
-// Setting up port number
-const PORT = process.env.PORT || 4000;
-
 // Loading environment variables from .env file
 dotenv.config();
 
-// Connecting to database
-database.connect();
+const PORT = process.env.PORT || 4000;
 
-// Middlewares — these must run BEFORE routes are mounted
+// Middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use(
-	cors({
-		origin: ["http://localhost:3000", "https://schlor.vercel.app"],
-		credentials: true,
-	})
+  cors({
+    origin: ["http://localhost:3000", "https://schlor.vercel.app"],
+    credentials: true,
+  })
 );
 app.use(
-	fileUpload({
-		useTempFiles: true,
-		tempFileDir: "/tmp/",
-	})
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
 );
 
-// Connecting to cloudinary
-cloudinaryConnect();
-
-// Setting up routes — now mounted AFTER middleware
+// Routes
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/course", courseRoutes);
@@ -50,15 +43,21 @@ app.use("/api/v1/payment", paymentRoutes);
 app.use("/api/v1/reach", contactUsRoute);
 app.use("/api/v1/certificate", certificateRoutes);
 
-// Testing the server
 app.get("/", (req, res) => {
-	return res.json({
-		success: true,
-		message: "Your server is up and running ...",
-	});
+  return res.json({
+    success: true,
+    message: "Your server is up and running ...",
+  });
 });
 
-// Listening to the server
-app.listen(PORT, () => {
-	console.log(`App is listening at ${PORT}`);
-});
+// ✅ KEY CHANGE — only connect DB and start server if NOT in test mode
+if (process.env.NODE_ENV !== "test") {
+  database.connect();
+  cloudinaryConnect();
+  app.listen(PORT, () => {
+    console.log(`App is listening at ${PORT}`);
+  });
+}
+
+// ✅ Export app for tests
+module.exports = app;
