@@ -1,4 +1,4 @@
-# Schlor 🎓
+# Scholr 🎓
 
 > Learn. Build. Get Certified.
 
