@@ -424,3 +424,52 @@ exports.deleteCourse = async (req, res) => {
     })
   }
 }
+exports.generateCourseDescription = async (req, res) => {
+  try {
+    const { courseTitle, topics } = req.body
+
+    if (!courseTitle || !topics) {
+      return res.status(400).json({
+        success: false,
+        message: "courseTitle and topics are required",
+      })
+    }
+
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "openai/gpt-oss-20b",
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are an expert EdTech copywriter. Write professional, engaging course descriptions in 3-4 sentences. Be concise, highlight outcomes, and sound human — not robotic.",
+          },
+          {
+            role: "user",
+            content: `Write a course description for a course titled "${courseTitle}". Topics covered: ${topics}. Do not include any heading, prefix, or label — just the description paragraph.`,
+          },
+        ],
+        max_tokens: 200,
+        temperature: 0.7,
+      }),
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      throw new Error(data.error?.message || "Groq API error")
+    }
+
+    const description = data.choices[0].message.content.trim()
+
+    return res.status(200).json({ success: true, description })
+  } catch (error) {
+    console.error("Groq error:", error.message)
+    return res.status(500).json({ success: false, message: "Failed to generate description" })
+  }
+}

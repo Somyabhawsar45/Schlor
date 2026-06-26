@@ -1,6 +1,8 @@
 // Import the required modules
 const express = require("express")
 const router = express.Router()
+const { generateCourseDescription } = require("../controllers/Course")
+
 
 // Import the Controllers
 
@@ -56,7 +58,7 @@ const { auth, isInstructor, isStudent, isAdmin } = require("../middleware/auth")
 // ********************************************************************************************************
 
 // Courses can Only be Created by Instructors
-router.post("/createCourse", auth, isInstructor, createCourse)
+router.post("/generateDescription", auth, isInstructor, generateCourseDescription)
 // Edit Course routes
 router.post("/editCourse", auth, isInstructor, editCourse)
 //Add a Section to a Course

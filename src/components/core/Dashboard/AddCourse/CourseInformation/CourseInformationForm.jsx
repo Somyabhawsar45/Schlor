@@ -31,6 +31,7 @@ export default function CourseInformationForm() {
   const { course, editCourse } = useSelector((state) => state.course)
   const [loading, setLoading] = useState(false)
   const [courseCategories, setCourseCategories] = useState([])
+  const [generating, setGenerating] = useState(false)
 
   useEffect(() => {
     const getCategories = async () => {
@@ -73,6 +74,44 @@ export default function CourseInformationForm() {
     return false
   }
 
+  const generateDescription = async () => {
+    const title = getValues("courseTitle")
+    const tags = getValues("courseTags")
+
+    if (!title) {
+      toast.error("Enter a course title first")
+      return
+    }
+
+    const topics =
+      Array.isArray(tags) && tags.length > 0 ? tags.join(", ") : title
+
+    setGenerating(true)
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/course/generateDescription`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ courseTitle: title, topics }),
+        }
+      )
+      const data = await res.json()
+      if (data.success) {
+        setValue("courseShortDesc", data.description)
+        toast.success("Description generated!")
+      } else {
+        toast.error("Generation failed")
+      }
+    } catch (err) {
+      toast.error("Something went wrong")
+    }
+    setGenerating(false)
+  }
+
   const onSubmit = async (data) => {
     if (editCourse) {
       if (isFormUpdated()) {
@@ -95,7 +134,10 @@ export default function CourseInformationForm() {
           currentValues.courseRequirements.toString() !==
           course.instructions.toString()
         )
-          formData.append("instructions", JSON.stringify(data.courseRequirements))
+          formData.append(
+            "instructions",
+            JSON.stringify(data.courseRequirements)
+          )
         if (currentValues.courseImage !== course.thumbnail)
           formData.append("thumbnailImage", data.courseImage)
         setLoading(true)
@@ -152,14 +194,45 @@ export default function CourseInformationForm() {
           </span>
         )}
       </div>
+
       {/* Course Short Description */}
       <div className="flex flex-col space-y-2">
-        <label className="text-xs font-medium text-[#94a3b8]" htmlFor="courseShortDesc">
-          Course Short Description <sup className="text-[#06b6d4]">*</sup>
-        </label>
+        <div className="flex items-center justify-between">
+          <label className="text-xs font-medium text-[#94a3b8]" htmlFor="courseShortDesc">
+            Course Short Description <sup className="text-[#06b6d4]">*</sup>
+          </label>
+          <div className="flex items-center gap-x-2">
+  <button
+    type="button"
+    onClick={generateDescription}
+    disabled={generating}
+    className="flex items-center gap-x-1.5 rounded-[4px] border border-[rgba(6,182,212,0.3)] px-3 py-1 text-xs text-[#06b6d4] transition-all duration-150 hover:border-[#06b6d4] hover:bg-[#06b6d4]/10 disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    {generating ? (
+      <>
+        <span className="h-3 w-3 animate-spin rounded-full border-2 border-[#06b6d4] border-t-transparent" />
+        Generating...
+      </>
+    ) : (
+      "✨ AI Generate"
+    )}
+  </button>
+
+  {getValues("courseShortDesc") && (
+    <button
+      type="button"
+      onClick={generateDescription}
+      disabled={generating}
+      className="flex items-center gap-x-1 rounded-[4px] border border-[rgba(148,163,184,0.3)] px-3 py-1 text-xs text-[#94a3b8] transition-all duration-150 hover:border-[#94a3b8] hover:text-[#f0f9ff] disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      ↻ Regenerate
+    </button>
+  )}
+</div>
+        </div>
         <textarea
           id="courseShortDesc"
-          placeholder="Enter Description"
+          placeholder="Enter Description or use AI Generate above"
           {...register("courseShortDesc", { required: true })}
           className="form-style resize-x-none min-h-[130px] w-full"
         />
@@ -169,6 +242,7 @@ export default function CourseInformationForm() {
           </span>
         )}
       </div>
+
       {/* Course Price */}
       <div className="flex flex-col space-y-2">
         <label className="text-xs font-medium text-[#94a3b8]" htmlFor="coursePrice">
@@ -195,6 +269,7 @@ export default function CourseInformationForm() {
           </span>
         )}
       </div>
+
       {/* Course Category */}
       <div className="flex flex-col space-y-2">
         <label className="text-xs font-medium text-[#94a3b8]" htmlFor="courseCategory">
@@ -227,6 +302,7 @@ export default function CourseInformationForm() {
           </span>
         )}
       </div>
+
       {/* Course Tags */}
       <ChipInput
         label="Tags"
@@ -237,6 +313,7 @@ export default function CourseInformationForm() {
         setValue={setValue}
         getValues={getValues}
       />
+
       {/* Course Thumbnail Image */}
       <Upload
         name="courseImage"
@@ -246,6 +323,7 @@ export default function CourseInformationForm() {
         errors={errors}
         editData={editCourse ? course?.thumbnail : null}
       />
+
       {/* Benefits of the course */}
       <div className="flex flex-col space-y-2">
         <label className="text-xs font-medium text-[#94a3b8]" htmlFor="courseBenefits">
@@ -263,6 +341,7 @@ export default function CourseInformationForm() {
           </span>
         )}
       </div>
+
       {/* Requirements/Instructions */}
       <RequirementsField
         name="courseRequirements"
@@ -272,6 +351,7 @@ export default function CourseInformationForm() {
         errors={errors}
         getValues={getValues}
       />
+
       {/* Next Button */}
       <div className="flex justify-end gap-x-2">
         {editCourse && (
