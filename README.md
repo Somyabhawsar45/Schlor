@@ -28,7 +28,7 @@ Not a tutorial clone — every architectural decision was made from scratch incl
 | 🔍 Public Verification | Every certificate verifiable by unique ID |
 | 📊 Analytics Dashboard | Enrollment + revenue charts via Recharts |
 | ✅ Integration Tests | 19 tests across auth, courses, certificates |
-
+| ✨ AI Course Description | Auto-generates course descriptions via Groq (Llama 3) based on title + tags |
 ---
 
 ## Role Matrix
@@ -46,7 +46,7 @@ Not a tutorial clone — every architectural decision was made from scratch incl
 
 ## Tech Stack
 
-`React` `Redux Toolkit` `Tailwind CSS` `Node.js` `Express` `MongoDB` `Mongoose` `JWT` `bcrypt` `Brevo` `Cloudinary` `Puppeteer` `Recharts` `Jest` `Supertest`
+`React` `Redux Toolkit` `Tailwind CSS` `Node.js` `Express` `MongoDB` `Mongoose` `JWT` `bcrypt` `Brevo` `Cloudinary` `Puppeteer` `Recharts` `Jest` `Supertest` `Groq (Llama 3)`
 
 ---
 
@@ -116,6 +116,7 @@ POST   /api/v1/auth/login                      → Login
 GET    /api/v1/course/getAllCourses             → Public listing
 
 POST   /api/v1/course/createCourse             → Instructor only
+POST   /api/v1/course/generateDescription      → AI-generated description (Groq)
 GET    /api/v1/certificate/check/:courseId     → Check eligibility
 
 GET    /api/v1/certificate/download/:courseId  → Download PDF
@@ -148,6 +149,7 @@ Tests: 19 passed, 19 total
 
 **Test isolation** — All 19 tests run against `mongodb-memory-server`. No real data touched, clean state after every test.
 
+**AI integration without lock-in** — Used Groq's OpenAI-compatible API for fast, free-tier LLM calls instead of hardcoding to one vendor's SDK, keeping the integration swappable.
 ---
 
 ## Local Setup
