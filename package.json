@@ -1,5 +1,5 @@
 {
-  "name": "react-tailwind-css-starter-pack",
+  "name": "schlor",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -31,11 +31,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thepranaygupta/react-tailwind-css-starter-pack.git"
+    "url": "https://github.com/Somyabhawsar45/Schlor"
   },
-  "author": "Pranay Gupta",
+  "author": "Somya Bhawsar",
   "bugs": {
-    "url": "https://github.com/thepranaygupta/react-tailwind-css-starter-pack/issues"
+    "url": "https://github.com/Somyabhawsar45/Schlor/issues"
   },
   "scripts": {
     "start": "react-scripts start",
