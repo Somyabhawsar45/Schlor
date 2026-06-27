@@ -8,15 +8,19 @@
     "test": "jest --forceExit --detectOpenHandles"
   },
   "jest": {
-    "testEnvironment": "node",
-    "testTimeout": 30000,
-    "setupFilesAfterEnv": [
-      "./tests/setup.js"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(uuid)/)"
-    ]
-  },
+  "watchman": false,
+  "testEnvironment": "node",
+  "testTimeout": 30000,
+  "setupFilesAfterEnv": [
+    "./tests/setup.js"
+  ],
+  "transformIgnorePatterns": [
+    "node_modules/(?!(uuid)/)"
+  ],
+  "testMatch": [
+    "<rootDir>/tests/*.test.js"
+  ]
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
