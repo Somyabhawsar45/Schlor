@@ -2,7 +2,8 @@
 const Certificate = require("../models/Certificate")
 const User = require("../models/User")
 const Course = require("../models/Course")
-const puppeteer = require("puppeteer")
+const puppeteer = require("puppeteer-core")
+const chromium = require("@sparticuz/chromium")
 
 // Check if a certificate exists for this user + course
 // Used by the frontend to decide whether to show the Download button
@@ -70,8 +71,10 @@ exports.downloadCertificate = async (req, res) => {
     })
 
     browser = await puppeteer.launch({
-      headless: "new",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
     })
     const page = await browser.newPage()
     await page.setContent(html, { waitUntil: "networkidle0" })
