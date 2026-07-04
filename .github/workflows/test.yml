@@ -20,6 +20,8 @@ jobs:
 
       - name: Install server dependencies
         run: cd server && npm install
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: "true"
 
       - name: Run tests
         run: cd server && npm test
