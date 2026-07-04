@@ -29,6 +29,7 @@ Not a tutorial clone — every architectural decision was made from scratch incl
 | 📊 Analytics Dashboard | Enrollment + revenue charts via Recharts |
 | ✅ Integration Tests | 19 tests across auth, courses, certificates |
 | ✨ AI Course Description | Auto-generates course descriptions via Groq (Llama 3) based on title + tags |
+
 ---
 
 ## Role Matrix
@@ -51,77 +52,56 @@ Not a tutorial clone — every architectural decision was made from scratch incl
 ---
 
 ## Architecture
-┌──────────┐    ┌──────────┐    ┌──────────┐
 
-│  Student  │    │Instructor│    │  Admin   │
-
-└────┬─────┘    └────┬─────┘    └────┬─────┘
-
-└───────────────┼───────────────┘
-
-▼
-
-┌───────────────────────┐
-
-│    React Frontend     │
-
-│  Tailwind + Redux     │
-
-└───────────┬───────────┘
-
-│ REST API
-
-▼
-
-┌───────────────────────┐
-
-│    Express Backend    │
-
-├───────────────────────┤
-
-│  JWT Auth Middleware  │
-
-│  RBAC Role Guards     │
-
-│  PDF Generator        │
-
-│  Brevo Email Service  │
-
-└───────┬───────────────┘
-
-│
-
-┌──────────┴──────────┐
-
-▼                     ▼
-
-┌───────────┐       ┌─────────────────┐
-
-│  MongoDB  │       │   Cloudinary    │
-
-│ (Database)│       │ (Media Storage) │
-
-└───────────┘       └─────────────────┘
+```
+┌───────────┐   ┌────────────┐   ┌───────────┐
+│  Student  │   │ Instructor │   │   Admin   │
+└─────┬─────┘   └─────┬──────┘   └─────┬─────┘
+      │               │                │
+      └───────────────┼────────────────┘
+                       ▼
+           ┌───────────────────────┐
+           │     React Frontend    │
+           │   Tailwind + Redux    │
+           └───────────┬───────────┘
+                       │  REST API
+                       ▼
+           ┌───────────────────────┐
+           │    Express Backend    │
+           ├───────────────────────┤
+           │  JWT Auth Middleware  │
+           │  RBAC Role Guards     │
+           │  PDF Generator        │
+           │  Brevo Email Service  │
+           └───────────┬───────────┘
+                       │
+             ┌─────────┴──────────┐
+             ▼                    ▼
+      ┌────────────┐      ┌──────────────────┐
+      │  MongoDB   │      │    Cloudinary    │
+      │ (Database) │      │ (Media Storage)  │
+      └────────────┘      └──────────────────┘
+```
 
 ---
 
 ## API
 
 📬 [Postman Documentation](https://web.postman.co/workspace/Somya-Bhawar~5780f1dc-7f58-4a08-a8d7-2812646772cc/collection/41251947-a56f6203-7cad-42a4-afaf-1ba33ca32cd5?action=share&source=copy-link&creator=41251947)
-POST   /api/v1/auth/sendotp                    → Send OTP
 
-POST   /api/v1/auth/signup                     → Register
+```
+POST   /api/v1/auth/sendotp                     → Send OTP
+POST   /api/v1/auth/signup                      → Register
+POST   /api/v1/auth/login                       → Login
 
-POST   /api/v1/auth/login                      → Login
 GET    /api/v1/course/getAllCourses             → Public listing
+POST   /api/v1/course/createCourse              → Instructor only
+POST   /api/v1/course/generateDescription       → AI-generated description (Groq)
 
-POST   /api/v1/course/createCourse             → Instructor only
-POST   /api/v1/course/generateDescription      → AI-generated description (Groq)
-GET    /api/v1/certificate/check/:courseId     → Check eligibility
-
-GET    /api/v1/certificate/download/:courseId  → Download PDF
-
-GET    /api/v1/certificate/verify/:id          → Public verify
+GET    /api/v1/certificate/check/:courseId      → Check eligibility
+GET    /api/v1/certificate/download/:courseId   → Download PDF
+GET    /api/v1/certificate/verify/:id           → Public verify
+```
 
 ---
 
@@ -130,12 +110,14 @@ GET    /api/v1/certificate/verify/:id          → Public verify
 ```bash
 npm test
 ```
+
+```
 PASS  tests/auth.test.js
-
 PASS  tests/course.test.js
-
 PASS  tests/certificate.test.js
+
 Tests: 19 passed, 19 total
+```
 
 ---
 
@@ -150,6 +132,7 @@ Tests: 19 passed, 19 total
 **Test isolation** — All 19 tests run against `mongodb-memory-server`. No real data touched, clean state after every test.
 
 **AI integration without lock-in** — Used Groq's OpenAI-compatible API for fast, free-tier LLM calls instead of hardcoding to one vendor's SDK, keeping the integration swappable.
+
 ---
 
 ## Local Setup
