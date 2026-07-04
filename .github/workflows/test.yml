@@ -23,6 +23,9 @@ jobs:
         env:
           PUPPETEER_SKIP_DOWNLOAD: "true"
 
+      - name: Validate package.json
+        run: cd server && node -e "JSON.parse(require('fs').readFileSync('package.json'))"
+
       - name: Run tests
         run: cd server && npm test
         env:
