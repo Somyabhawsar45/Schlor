@@ -180,7 +180,7 @@ exports.getEnrolledCourses = async (req, res) => {
       })
       courseProgressCount = courseProgressCount?.completedVideos.length
       if (SubsectionLength === 0) {
-        userDetails.courses[i].progressPercentage = 100
+        userDetails.courses[i].progressPercentage = 0
       } else {
         // To make it up to 2 decimal point
         const multiplier = Math.pow(10, 2)
