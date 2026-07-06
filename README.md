@@ -2,7 +2,7 @@
 
 > Learn. Build. Get Certified.
 
-[![Tests](https://github.com/Somyabhawsar45/Schlor/actions/workflows/test.yml/badge.svg)](https://github.com/Somyabhawsar45/Schlor/actions)
+[![Run Tests](https://github.com/Somyabhawsar45/Schlor/actions/workflows/test.yml/badge.svg)](https://github.com/Somyabhawsar45/Schlor/actions/workflows/test.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/Somyabhawsar45/Schlor/blob/main/LICENSE)
 [![Status](https://img.shields.io/badge/status-live-success)](https://schlor.vercel.app)
 
