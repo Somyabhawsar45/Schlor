@@ -2,11 +2,7 @@
 import { FaArrowRight } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
-// Image and Video Import
-// Hero image (Unsplash — free to use, no attribution required)
-const HeroImage =
-  "https://images.unsplash.com/photo-1753715613434-9c7cb58876b9?fm=jpg&q=80&w=1200&auto=format&fit=crop"
-  // Component Imports
+// Component Imports
 import Footer from "../components/Common/Footer"
 import ReviewSlider from "../components/Common/ReviewSlider"
 import CTAButton from "../components/core/HomePage/Button"
@@ -17,6 +13,10 @@ import InstructorSection from "../components/core/HomePage/InstructorSection"
 import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection"
 import TimelineSection from "../components/core/HomePage/Timeline"
 
+// Image and Video Import
+// Hero image (Unsplash — free to use, no attribution required)
+const HeroImage =
+  "https://images.unsplash.com/photo-1753715613434-9c7cb58876b9?fm=jpg&q=80&w=1200&auto=format&fit=crop"
 function Home() {
   return (
     <div className="bg-[#060d1a]">
