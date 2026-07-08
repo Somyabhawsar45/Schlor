@@ -14,7 +14,7 @@
 
 Schlor is a full-stack EdTech platform built on the MERN stack with three distinct user roles, OTP-verified signup, video course delivery, and auto-generated PDF certificates on course completion.
 
-Not a tutorial clone — every architectural decision was made from scratch including RBAC middleware, Brevo HTTP API migration, and on-demand Puppeteer PDF rendering.
+Not a tutorial clone — every architectural decision was made from scratch including RBAC middleware, Brevo HTTP API migration, on-demand Puppeteer PDF rendering, and a retrieval-augmented AI Q&A service for course content.
 
 ---
 
@@ -29,6 +29,7 @@ Not a tutorial clone — every architectural decision was made from scratch incl
 | 📊 Analytics Dashboard | Enrollment + revenue charts via Recharts |
 | ✅ Integration Tests | 19 tests across auth, courses, certificates |
 | ✨ AI Course Description | Auto-generates course descriptions via Groq (Llama 3) based on title + tags |
+| 🤖 Ask a Doubt | Students ask natural-language questions about a course and get instant, context-grounded answers from a dedicated RAG microservice (Netra AI) |
 
 ---
 
@@ -38,6 +39,7 @@ Not a tutorial clone — every architectural decision was made from scratch incl
 |---|---|---|---|
 | Browse courses | ✅ | ✅ | ✅ |
 | Enroll | ✅ | ❌ | ❌ |
+| Ask a Doubt (AI Q&A) | ✅ | ❌ | ❌ |
 | Create courses | ❌ | ✅ | ❌ |
 | Manage categories | ❌ | ❌ | ✅ |
 | Download certificate | ✅ | ❌ | ❌ |
@@ -47,7 +49,7 @@ Not a tutorial clone — every architectural decision was made from scratch incl
 
 ## Tech Stack
 
-`React` `Redux Toolkit` `Tailwind CSS` `Node.js` `Express` `MongoDB` `Mongoose` `JWT` `bcrypt` `Brevo` `Cloudinary` `Puppeteer` `Recharts` `Jest` `Supertest` `Groq (Llama 3)`
+`React` `Redux Toolkit` `Tailwind CSS` `Node.js` `Express` `MongoDB` `Mongoose` `JWT` `bcrypt` `Brevo` `Cloudinary` `Puppeteer` `Recharts` `Jest` `Supertest` `Groq (Llama 3)` `LangChain` `FAISS`
 
 ---
 
@@ -75,13 +77,16 @@ Not a tutorial clone — every architectural decision was made from scratch incl
            │  Brevo Email Service  │
            └───────────┬───────────┘
                        │
-             ┌─────────┴──────────┐
-             ▼                    ▼
-      ┌────────────┐      ┌──────────────────┐
-      │  MongoDB   │      │    Cloudinary    │
-      │ (Database) │      │ (Media Storage)  │
-      └────────────┘      └──────────────────┘
+          ┌────────────┼────────────────┐
+          ▼            ▼                ▼
+   ┌────────────┐ ┌──────────────┐ ┌───────────────────┐
+   │  MongoDB   │ │  Cloudinary  │ │   Netra AI API     │
+   │ (Database) │ │(Media Storage)│ │ (LangChain + FAISS)│
+   └────────────┘ └──────────────┘ │  RAG Q&A Service    │
+                                    └────────────────────┘
 ```
+
+The **Ask a Doubt** feature is served by [Netra AI](https://github.com/Somyabhawsar45/Netra-AI) — a separate Python microservice. Course content is embedded and indexed into a FAISS vector store; student questions are matched against that index via retrieval-augmented generation and answered using Groq's Llama 3, rather than relying on the LLM's raw knowledge alone.
 
 ---
 
@@ -97,6 +102,8 @@ POST   /api/v1/auth/login                       → Login
 GET    /api/v1/course/getAllCourses             → Public listing
 POST   /api/v1/course/createCourse              → Instructor only
 POST   /api/v1/course/generateDescription       → AI-generated description (Groq)
+
+POST   /api/v1/profile/course-doubt             → Ask a question about a course (RAG, Netra AI)
 
 GET    /api/v1/certificate/check/:courseId      → Check eligibility
 GET    /api/v1/certificate/download/:courseId   → Download PDF
@@ -132,6 +139,8 @@ Tests: 19 passed, 19 total
 **Test isolation** — All 19 tests run against `mongodb-memory-server`. No real data touched, clean state after every test.
 
 **AI integration without lock-in** — Used Groq's OpenAI-compatible API for fast, free-tier LLM calls instead of hardcoding to one vendor's SDK, keeping the integration swappable.
+
+**Grounded AI answers, not hallucinations** — "Ask a Doubt" doesn't just prompt an LLM blind. Course content is chunked and embedded into a FAISS vector index, and student questions are answered using retrieval-augmented generation, so responses stay grounded in actual course material.
 
 ---
 
