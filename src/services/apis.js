@@ -77,3 +77,8 @@ export const certificateEndpoints = {
   DOWNLOAD_CERTIFICATE_API: BASE_URL + "/certificate/download",
   VERIFY_CERTIFICATE_API: BASE_URL + "/certificate/verify",
 }
+
+// COURSE DOUBT ENDPOINTS
+export const courseDoubtEndpoints = {
+  COURSE_DOUBT_API: BASE_URL + "/course-doubt",
+}

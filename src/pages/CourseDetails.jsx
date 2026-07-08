@@ -10,6 +10,7 @@ import Footer from "../components/Common/Footer"
 import RatingStars from "../components/Common/RatingStars"
 import CourseAccordionBar from "../components/core/Course/CourseAccordionBar"
 import CourseDetailsCard from "../components/core/Course/CourseDetailsCard"
+import CourseDoubtBox from "../components/core/Course/CourseDoubtBox"
 import { formatDate } from "../services/formatDate"
 import { fetchCourseDetails } from "../services/operations/courseDetailsAPI"
 import { BuyCourse } from "../services/operations/studentFeaturesAPI"
@@ -240,6 +241,8 @@ function CourseDetails() {
                 />
               ))}
             </div>
+            <CourseDoubtBox courseId={courseId} />
+
 
             {/* Author Details */}
             <div className="mb-12 py-4">
