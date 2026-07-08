@@ -30,7 +30,8 @@ export function getUserDetails(token, navigate) {
       dispatch(setUser({ ...response.data.data, image: userImage }))
     } catch (error) {
       console.log("GET_USER_DETAILS API ERROR............", error)
-      toast.error("Could Not Get User Details")
+      toast.error("Session expired. Please log in again.")
+      dispatch(logout(navigate))
     }
     toast.dismiss(toastId)
     dispatch(setLoading(false))
