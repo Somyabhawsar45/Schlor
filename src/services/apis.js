@@ -80,5 +80,5 @@ export const certificateEndpoints = {
 
 // COURSE DOUBT ENDPOINTS
 export const courseDoubtEndpoints = {
-  COURSE_DOUBT_API: BASE_URL + "/course-doubt",
+COURSE_DOUBT_API: BASE_URL + "/profile/course-doubt",
 }
