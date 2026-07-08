@@ -6,6 +6,7 @@ const User = require("../models/User")
 const { uploadImageToCloudinary } = require("../utils/imageUploader")
 const CourseProgress = require("../models/CourseProgress")
 const { convertSecondsToDuration } = require("../utils/secToDuration")
+const axios = require("axios")
 // Function to create a new course
 exports.createCourse = async (req, res) => {
   try {
@@ -94,6 +95,17 @@ exports.createCourse = async (req, res) => {
       status,
       instructions,
     })
+
+    // Index course content for AI doubt-solving (non-blocking — failure here should not break course creation)
+    try {
+      const contentToIndex = `${courseName}\n\n${courseDescription}\n\n${whatYouWillLearn}`
+      await axios.post(`${process.env.NETRA_AI_URL}/api/v1/index-course`, {
+        course_id: newCourse._id.toString(),
+        content: contentToIndex,
+      })
+    } catch (indexError) {
+      console.log("Course indexing failed (non-blocking):", indexError.message)
+    }
 
     // Add course to instructor's profile
     await User.findByIdAndUpdate(
